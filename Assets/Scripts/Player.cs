@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] int _speed = 5;
+
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
     bool _canOpenDoor;
@@ -17,7 +19,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * 10;
+        Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
         _rigidBody.linearVelocity = desiredVelocity;
     }
 
