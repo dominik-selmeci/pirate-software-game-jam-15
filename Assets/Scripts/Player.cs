@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [Header("GameObjects")]
+    [SerializeField] GameObject _torch;
+
+    [Header("Properties")]
     [SerializeField] int _speed = 5;
 
     Rigidbody2D _rigidBody;
@@ -21,6 +25,11 @@ public class Player : MonoBehaviour
     {
         Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
         _rigidBody.linearVelocity = desiredVelocity;
+
+        if (_playerInput.actions["Attack"].triggered)
+        {
+            Instantiate(_torch, _rigidBody.position, Quaternion.identity);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
