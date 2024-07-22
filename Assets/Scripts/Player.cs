@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _torch;
 
     [Header("Properties")]
-    [SerializeField] int _speed = 5;
+    [SerializeField] float _speed = 3f;
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
