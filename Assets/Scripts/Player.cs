@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] float _speed = 3f;
+
+    public event Action UseItemAction;
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
@@ -26,9 +29,11 @@ public class Player : MonoBehaviour
         Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
         _rigidBody.linearVelocity = desiredVelocity;
 
-        if (_playerInput.actions["Attack"].triggered)
+        if (_playerInput.actions["UseItem"].triggered)
         {
-            Instantiate(_torch, _rigidBody.position, Quaternion.identity);
+            UseItemAction?.Invoke();
+            // var selectedItem =
+            //
         }
     }
 
@@ -56,6 +61,16 @@ public class Player : MonoBehaviour
         {
             Destroy(door.gameObject);
             Debug.Log("OPEN DOOOOR");
+        }
+    }
+
+    public void UseItem(InventoryItem itemInSlot)
+    {
+        bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
+        if (isDroppable)
+        {
+            Vector2 dropPosition = new Vector2(_rigidBody.position.x, _rigidBody.position.y - 1);
+            Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
         }
     }
 }
