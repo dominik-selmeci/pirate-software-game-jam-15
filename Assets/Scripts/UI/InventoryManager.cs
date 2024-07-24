@@ -22,6 +22,18 @@ public class InventoryManager : MonoBehaviour
         AddItem(item1);
         ChangeSelectedSlot(0);
         player.UseItemAction += UseItem;
+        player.SelectPreviousItem += MoveSelectedSlotToTheLeft;
+        player.SelectNextItem += MoveSelectedSlotToTheRight;
+    }
+
+    private void MoveSelectedSlotToTheRight()
+    {
+        MoveSelectedSlot(1);
+    }
+
+    void MoveSelectedSlotToTheLeft()
+    {
+        MoveSelectedSlot(-1);
     }
 
     void Update()
@@ -29,11 +41,7 @@ public class InventoryManager : MonoBehaviour
         if (Math.Abs(Input.mouseScrollDelta.y) == 1)
         {
             int increment = (int)Input.mouseScrollDelta.y;
-            int newSelectedSlot = selectedSlot + increment;
-            if (newSelectedSlot > 9) newSelectedSlot = 0;
-            if (newSelectedSlot < 0) newSelectedSlot = 9;
-
-            ChangeSelectedSlot(newSelectedSlot);
+            MoveSelectedSlot(increment);
         }
 
         if (Input.inputString != null)
@@ -44,6 +52,15 @@ public class InventoryManager : MonoBehaviour
                 ChangeSelectedSlot(number == 0 ? 9 : number - 1);
             }
         }
+    }
+
+    void MoveSelectedSlot(int increment)
+    {
+        int newSelectedSlot = selectedSlot + increment;
+        if (newSelectedSlot > 9) newSelectedSlot = 0;
+        if (newSelectedSlot < 0) newSelectedSlot = 9;
+
+        ChangeSelectedSlot(newSelectedSlot);
     }
 
     void ChangeSelectedSlot(int slotIndex)
@@ -82,6 +99,9 @@ public class InventoryManager : MonoBehaviour
         if (itemInSlot == null) return;
 
         player.UseItem(itemInSlot);
-        Destroy(itemInSlot.gameObject);
+
+        bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
+        if (isDroppable)
+            Destroy(itemInSlot.gameObject);
     }
 }

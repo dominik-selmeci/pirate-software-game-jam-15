@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] float _speed = 3f;
 
     public event Action UseItemAction;
+    public event Action SelectPreviousItem;
+    public event Action SelectNextItem;
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
@@ -30,11 +32,13 @@ public class Player : MonoBehaviour
         _rigidBody.linearVelocity = desiredVelocity;
 
         if (_playerInput.actions["UseItem"].triggered)
-        {
             UseItemAction?.Invoke();
-            // var selectedItem =
-            //
-        }
+
+        if (_playerInput.actions["Previous"].triggered)
+            SelectPreviousItem?.Invoke();
+
+        if (_playerInput.actions["Next"].triggered)
+            SelectNextItem?.Invoke();
     }
 
     void OnTriggerEnter2D(Collider2D collider)
