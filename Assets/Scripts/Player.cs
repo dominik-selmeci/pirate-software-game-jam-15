@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -17,31 +18,51 @@ public class Player : MonoBehaviour
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
+    Animator _animator;
     bool _canOpenDoor;
+    bool _canMove = true;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
-        _rigidBody.linearVelocity = desiredVelocity;
+	// Update is called once per frame
+	void Update()
+	{
+		Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
+		if (_canMove)
+		{
+			_rigidBody.linearVelocity = desiredVelocity;
+			HandleWalkingAnimation(desiredVelocity);
+		}
 
-        if (_playerInput.actions["UseItem"].triggered)
-            UseItemAction?.Invoke();
+		if (_playerInput.actions["UseItem"].triggered)
+		{
+			_canMove = false;
+			_rigidBody.linearVelocity = Vector2.zero;
 
-        if (_playerInput.actions["Previous"].triggered)
-            SelectPreviousItem?.Invoke();
+			if (desiredVelocity.x >= 0)
+			{
+				_animator.SetTrigger("DropItem");
+			}
+			else
+			{
+				_animator.SetTrigger("DropItemFlipped");
+			}
+			UseItemAction?.Invoke();
+		}
 
-        if (_playerInput.actions["Next"].triggered)
-            SelectNextItem?.Invoke();
-    }
+		if (_playerInput.actions["Previous"].triggered)
+			SelectPreviousItem?.Invoke();
 
-    void OnTriggerEnter2D(Collider2D collider)
+		if (_playerInput.actions["Next"].triggered)
+			SelectNextItem?.Invoke();
+	}
+
+	void OnTriggerEnter2D(Collider2D collider)
     {
         Key key = collider.GetComponent<Key>();
         if (key != null)
@@ -77,4 +98,16 @@ public class Player : MonoBehaviour
             Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
         }
     }
+
+    void HandleWalkingAnimation(Vector2 desiredVelocity)
+	{
+		_animator.SetFloat("horizontal", desiredVelocity.x);
+		_animator.SetFloat("vertical", desiredVelocity.y);
+		_animator.SetFloat("speed", desiredVelocity.sqrMagnitude);
+	}
+
+    public void RestoreMovement()
+	{
+        _canMove = true;
+	}
 }
