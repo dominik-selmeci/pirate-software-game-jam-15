@@ -20,7 +20,6 @@ public class InventoryManager : MonoBehaviour
     {
         AddItem(item1);
         AddItem(item1);
-        AddItem(item2);
         AddItem(item1);
         ChangeSelectedSlot(0);
         player.UseItemAction += UseItem;
