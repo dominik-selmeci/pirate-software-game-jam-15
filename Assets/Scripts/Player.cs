@@ -17,12 +17,15 @@ public class Player : MonoBehaviour
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
+    Animator _animator;
     bool _canOpenDoor;
+    bool _canMove;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
+        _animator = GetComponent<Animator>();  
     }
 
     // Update is called once per frame
@@ -31,10 +34,23 @@ public class Player : MonoBehaviour
         Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
         _rigidBody.linearVelocity = desiredVelocity;
 
-        if (_playerInput.actions["UseItem"].triggered)
-            UseItemAction?.Invoke();
+        HandleWalkingAnimation(desiredVelocity);
 
-        if (_playerInput.actions["Previous"].triggered)
+		if (_playerInput.actions["UseItem"].triggered)
+		{
+			if (desiredVelocity.x >= 0)
+			{
+				_animator.SetTrigger("DropItem");
+			}
+			else
+			{
+				_animator.SetTrigger("DropItemFlipped");
+			}
+			_animator.SetTrigger("DropItem");
+			UseItemAction?.Invoke();
+		}
+
+		if (_playerInput.actions["Previous"].triggered)
             SelectPreviousItem?.Invoke();
 
         if (_playerInput.actions["Next"].triggered)
@@ -77,4 +93,11 @@ public class Player : MonoBehaviour
             Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
         }
     }
+
+    void HandleWalkingAnimation(Vector2 desiredVelocity)
+	{
+		_animator.SetFloat("horizontal", desiredVelocity.x);
+		_animator.SetFloat("vertical", desiredVelocity.y);
+		_animator.SetFloat("speed", desiredVelocity.sqrMagnitude);
+	}
 }
