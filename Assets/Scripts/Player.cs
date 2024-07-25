@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -15,11 +13,14 @@ public class Player : MonoBehaviour
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
     public event Action SelectNextItem;
+    public event Action CollectMaterialAction;
+
+    [HideInInspector] public CollectableItem _itemThatCanBeCollected;
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
     Animator _animator;
-    bool _canOpenDoor;
+
     bool _canMove = true;
 
     void Start()
@@ -29,64 +30,62 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-	// Update is called once per frame
-	void Update()
-	{
-		Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
-		if (_canMove)
-		{
-			_rigidBody.linearVelocity = desiredVelocity;
-			HandleWalkingAnimation(desiredVelocity);
-		}
-
-		if (_playerInput.actions["UseItem"].triggered)
-		{
-			_canMove = false;
-			_rigidBody.linearVelocity = Vector2.zero;
-
-			if (desiredVelocity.x >= 0)
-			{
-				_animator.SetTrigger("DropItem");
-			}
-			else
-			{
-				_animator.SetTrigger("DropItemFlipped");
-			}
-			UseItemAction?.Invoke();
-		}
-
-		if (_playerInput.actions["Previous"].triggered)
-			SelectPreviousItem?.Invoke();
-
-		if (_playerInput.actions["Next"].triggered)
-			SelectNextItem?.Invoke();
-	}
-
-	void OnTriggerEnter2D(Collider2D collider)
+    // Update is called once per frame
+    void Update()
     {
-        Key key = collider.GetComponent<Key>();
-        if (key != null)
+        Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
+        if (_canMove)
         {
-            _canOpenDoor = true;
-            Destroy(key.gameObject);
+            _rigidBody.linearVelocity = desiredVelocity;
+            HandleWalkingAnimation(desiredVelocity);
         }
 
-        Door door = collider.GetComponent<Door>();
-        if (door != null && _canOpenDoor)
+        if (_playerInput.actions["UseItem"].triggered)
         {
-            SceneManager.LoadScene("Level 2");
-            Debug.Log("OPEN DOOOOR");
+            _canMove = false;
+            _rigidBody.linearVelocity = Vector2.zero;
+
+            if (desiredVelocity.x >= 0)
+            {
+                _animator.SetTrigger("DropItem");
+            }
+            else
+            {
+                _animator.SetTrigger("DropItemFlipped");
+            }
+            UseItemAction?.Invoke();
         }
+
+        if (_playerInput.actions["Previous"].triggered)
+            SelectPreviousItem?.Invoke();
+
+        if (_playerInput.actions["Next"].triggered)
+            SelectNextItem?.Invoke();
+
+        if (_playerInput.actions["Interact"].triggered)
+            CollectMaterial();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void CollectMaterial()
     {
-        Door door = collision.collider.GetComponent<Door>();
-        if (door != null && _canOpenDoor)
-        {
-            Destroy(door.gameObject);
-            Debug.Log("OPEN DOOOOR");
-        }
+        if (_itemThatCanBeCollected == null) return;
+
+        CollectMaterialAction?.Invoke();
+        Destroy(_itemThatCanBeCollected.gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
+        if (collectableItem != null)
+            _itemThatCanBeCollected = collectableItem;
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
+        if (collectableItem != null && collectableItem == _itemThatCanBeCollected)
+            _itemThatCanBeCollected = null;
     }
 
     public void UseItem(InventoryItem itemInSlot)
@@ -100,14 +99,14 @@ public class Player : MonoBehaviour
     }
 
     void HandleWalkingAnimation(Vector2 desiredVelocity)
-	{
-		_animator.SetFloat("horizontal", desiredVelocity.x);
-		_animator.SetFloat("vertical", desiredVelocity.y);
-		_animator.SetFloat("speed", desiredVelocity.sqrMagnitude);
-	}
+    {
+        _animator.SetFloat("horizontal", desiredVelocity.x);
+        _animator.SetFloat("vertical", desiredVelocity.y);
+        _animator.SetFloat("speed", desiredVelocity.sqrMagnitude);
+    }
 
     public void RestoreMovement()
-	{
+    {
         _canMove = true;
-	}
+    }
 }

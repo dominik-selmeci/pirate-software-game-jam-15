@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -24,9 +26,22 @@ public class InventoryManager : MonoBehaviour
         player.UseItemAction += UseItem;
         player.SelectPreviousItem += MoveSelectedSlotToTheLeft;
         player.SelectNextItem += MoveSelectedSlotToTheRight;
+        player.CollectMaterialAction += CollectMaterial;
     }
 
-    private void MoveSelectedSlotToTheRight()
+    void CollectMaterial()
+    {
+        if (player._itemThatCanBeCollected == null) return;
+
+        if (player._itemThatCanBeCollected.item != null)
+            AddItem(player._itemThatCanBeCollected.item);
+
+        List<Item> randomItems = player._itemThatCanBeCollected.randomItems;
+        if (randomItems.Count > 0)
+            AddItem(randomItems[Random.Range(0, randomItems.Count)]);
+    }
+
+    void MoveSelectedSlotToTheRight()
     {
         MoveSelectedSlot(1);
     }
