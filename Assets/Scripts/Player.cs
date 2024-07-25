@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -19,25 +20,30 @@ public class Player : MonoBehaviour
     PlayerInput _playerInput;
     Animator _animator;
     bool _canOpenDoor;
-    bool _canMove;
+    bool _canMove = true;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
-        _animator = GetComponent<Animator>();  
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
-        _rigidBody.linearVelocity = desiredVelocity;
-
-        HandleWalkingAnimation(desiredVelocity);
+	// Update is called once per frame
+	void Update()
+	{
+		Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
+		if (_canMove)
+		{
+			_rigidBody.linearVelocity = desiredVelocity;
+			HandleWalkingAnimation(desiredVelocity);
+		}
 
 		if (_playerInput.actions["UseItem"].triggered)
 		{
+			_canMove = false;
+			_rigidBody.linearVelocity = Vector2.zero;
+
 			if (desiredVelocity.x >= 0)
 			{
 				_animator.SetTrigger("DropItem");
@@ -46,18 +52,17 @@ public class Player : MonoBehaviour
 			{
 				_animator.SetTrigger("DropItemFlipped");
 			}
-			_animator.SetTrigger("DropItem");
 			UseItemAction?.Invoke();
 		}
 
 		if (_playerInput.actions["Previous"].triggered)
-            SelectPreviousItem?.Invoke();
+			SelectPreviousItem?.Invoke();
 
-        if (_playerInput.actions["Next"].triggered)
-            SelectNextItem?.Invoke();
-    }
+		if (_playerInput.actions["Next"].triggered)
+			SelectNextItem?.Invoke();
+	}
 
-    void OnTriggerEnter2D(Collider2D collider)
+	void OnTriggerEnter2D(Collider2D collider)
     {
         Key key = collider.GetComponent<Key>();
         if (key != null)
@@ -99,5 +104,10 @@ public class Player : MonoBehaviour
 		_animator.SetFloat("horizontal", desiredVelocity.x);
 		_animator.SetFloat("vertical", desiredVelocity.y);
 		_animator.SetFloat("speed", desiredVelocity.sqrMagnitude);
+	}
+
+    public void RestoreMovement()
+	{
+        _canMove = true;
 	}
 }
