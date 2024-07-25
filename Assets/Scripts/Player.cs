@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _torch;
 
     [Header("Properties")]
-    [SerializeField] float _speed = 3f;
+    [SerializeField] float _baseSpeed = 3f;
+    float _speed = 3f;
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        _speed = _baseSpeed;
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
@@ -64,6 +66,10 @@ public class Player : MonoBehaviour
 
         if (_playerInput.actions["Interact"].triggered)
             CollectMaterial();
+
+        if (_playerInput.actions["Sprint"].IsPressed())
+            _speed = 2 * _baseSpeed;
+        else _speed = _baseSpeed;
     }
 
     void CollectMaterial()
