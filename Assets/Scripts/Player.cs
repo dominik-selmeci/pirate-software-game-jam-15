@@ -43,20 +43,7 @@ public class Player : MonoBehaviour
         }
 
         if (_playerInput.actions["UseItem"].triggered)
-        {
-            _canMove = false;
-            _rigidBody.linearVelocity = Vector2.zero;
-
-            if (desiredVelocity.x >= 0)
-            {
-                _animator.SetTrigger("DropItem");
-            }
-            else
-            {
-                _animator.SetTrigger("DropItemFlipped");
-            }
             UseItemAction?.Invoke();
-        }
 
         if (_playerInput.actions["Previous"].triggered)
             SelectPreviousItem?.Invoke();
@@ -101,7 +88,20 @@ public class Player : MonoBehaviour
         {
             Vector2 dropPosition = new Vector2(_rigidBody.position.x, _rigidBody.position.y - 1);
             Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
+            PlayDropAnimation();
         }
+    }
+
+    void PlayDropAnimation()
+    {
+        _canMove = false;
+        float linearVelocityX = _rigidBody.linearVelocity.x;
+        _rigidBody.linearVelocity = Vector2.zero;
+
+        if (linearVelocityX >= 0)
+            _animator.SetTrigger("DropItem");
+        else
+            _animator.SetTrigger("DropItemFlipped");
     }
 
     void HandleWalkingAnimation(Vector2 desiredVelocity)

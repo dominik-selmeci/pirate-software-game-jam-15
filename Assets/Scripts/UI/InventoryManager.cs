@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     [Header("Testing Items")]
     [SerializeField] Item item1;
     [SerializeField] Item item2;
+    [SerializeField] int maxStackedItems = 64;
 
 
     int selectedSlot = -1;
@@ -89,6 +90,25 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(Item item)
     {
+        // check if any slot has the same item
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (
+                itemInSlot != null
+                && itemInSlot.item == item
+                && itemInSlot.count < maxStackedItems
+                && itemInSlot.item.stackable == true
+                )
+            {
+                itemInSlot.count++;
+                itemInSlot.RefreshCount();
+                return;
+            }
+        }
+
+        // find any empty slot
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             InventorySlot slot = inventorySlots[i];
@@ -117,6 +137,15 @@ public class InventoryManager : MonoBehaviour
 
         bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
         if (isDroppable)
-            Destroy(itemInSlot.gameObject);
+        {
+            if (itemInSlot.count == 1)
+                Destroy(itemInSlot.gameObject);
+            else
+            {
+                itemInSlot.count--;
+                itemInSlot.RefreshCount();
+            }
+
+        }
     }
 }
