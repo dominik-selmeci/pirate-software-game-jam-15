@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 2
-  m_LightType: 3
+  m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+    m_Center: {x: -0.029500008, y: 0.027550042, z: 0}
+    m_Extent: {x: 1.3582, y: 1.3498499, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -80,10 +80,22 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
+  - {x: -0.58391094, y: -0.50987214, z: 0}
+  - {x: -0.13328838, y: -0.5527914, z: 0}
+  - {x: -0.03950548, y: -0.8242681, z: 0}
+  - {x: 0.0690856, y: -0.5429198, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.54787064, y: -0.0641337, z: 0}
+  - {x: 0.82921886, y: 0.0543288, z: 0}
+  - {x: 0.53799915, y: 0.13330352, z: 0}
+  - {x: 0.5444236, y: 0.564167, z: 0}
+  - {x: 0.10857248, y: 0.62196136, z: 0}
+  - {x: -0.03950548, y: 0.87863016, z: 0}
+  - {x: -0.14809656, y: 0.62689734, z: 0}
+  - {x: -0.5888462, y: 0.57403886, z: 0}
+  - {x: -0.63675404, y: 0.13823938, z: 0}
+  - {x: -0.88848686, y: 0.03952098, z: 0}
+  - {x: -0.6268821, y: -0.049325943, z: 0}
 --- !u!1 &4281180005445401594
 GameObject:
   m_ObjectHideFlags: 0

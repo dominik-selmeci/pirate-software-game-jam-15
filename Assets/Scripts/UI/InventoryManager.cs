@@ -18,9 +18,10 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+        // Add two torches for testing
         AddItem(item1);
         AddItem(item1);
-        AddItem(item1);
+
         ChangeSelectedSlot(0);
         player.UseItemAction += UseItem;
         player.SelectPreviousItem += MoveSelectedSlotToTheLeft;
