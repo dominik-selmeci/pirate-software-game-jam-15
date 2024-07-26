@@ -115,5 +115,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedColor: {r: 1, g: 0.3882353, b: 0, a: 1}
   notSelectedColor: {r: 1, g: 1, b: 1, a: 1}
-  baseImage: {fileID: 0}
-  mixImage: {fileID: 0}
+  baseImage: {fileID: 5536306311747738596, guid: cd0b58f8ab8444a4c83621aca1883ded, type: 3}
+  mixImage: {fileID: -1151217573, guid: cd0b58f8ab8444a4c83621aca1883ded, type: 3}

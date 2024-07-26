@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class InventoryManager : MonoBehaviour
@@ -8,20 +10,21 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] InventorySlot[] inventorySlots;
     [SerializeField] GameObject inventoryItemPrefab;
     [SerializeField] Player player;
-
-    [Header("Testing Items")]
-    [SerializeField] Item item1;
-    [SerializeField] Item item2;
+    [SerializeField] Button combineButton;
     [SerializeField] int maxStackedItems = 64;
 
+    [Header("Starting Items")]
+    [SerializeField] List<Item> startingItems;
+
+    [Header("Recipes")]
+    [SerializeField] List<Recipe> recipes;
 
     int selectedSlot = -1;
+    InventoryMode mode = InventoryMode.Normal;
 
     void Start()
     {
-        // Add two torches for testing
-        AddItem(item1);
-        AddItem(item1);
+        startingItems.ForEach(item => AddItem(item));
 
         ChangeSelectedSlot(0);
         player.UseItemAction += UseItem;
@@ -57,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         if (Math.Abs(Input.mouseScrollDelta.y) == 1)
         {
             int increment = (int)Input.mouseScrollDelta.y;
-            MoveSelectedSlot(increment);
+            MoveSelectedSlot(-increment);
         }
 
         if (Input.inputString != null)
@@ -121,6 +124,74 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void CraftItems()
+    {
+        if (mode == InventoryMode.Normal) return;
+
+        // get selected items
+        List<Item> selectedItems = new List<Item>();
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            if (slot.MarkedForCrafting)
+            {
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                selectedItems.Add(itemInSlot.item);
+            }
+        }
+
+        // find corresponding recipe
+        Recipe choseRecipe = null;
+        recipes.ForEach(recipe =>
+        {
+            if (recipe.items.Count != selectedItems.Count) return;
+
+            bool hasAllItems = true;
+            recipe.items.ForEach(item =>
+            {
+                if (!selectedItems.Contains(item)) hasAllItems = false;
+            });
+
+            if (hasAllItems) choseRecipe = recipe;
+        });
+
+        if (choseRecipe == null)
+        {
+            Debug.Log("TODO: You can't combine those together");
+            return;
+        }
+
+        // remove count of everyone from selected items
+        bool shouldUnselectAll = false;
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            if (slot.MarkedForCrafting)
+            {
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+                if (itemInSlot.count == 1)
+                    shouldUnselectAll = true;
+
+                lowerCountInSlot(itemInSlot);
+            }
+        }
+
+        if (shouldUnselectAll)
+        {
+            for (int i = 0; i < inventorySlots.Length; i++)
+            {
+                if (inventorySlots[i].MarkedForCrafting)
+                    inventorySlots[i].toggleForCrafting();
+            }
+
+            combineButton.interactable = false;
+        }
+
+        AddItem(choseRecipe.craftedItem);
+        Debug.Log("You successfully crafted " + choseRecipe.craftedItem.name);
+    }
+
     void SpawnNewItem(Item item, InventorySlot slot)
     {
         GameObject newItemGameObject = Instantiate(inventoryItemPrefab, slot.transform);
@@ -133,19 +204,49 @@ public class InventoryManager : MonoBehaviour
         InventoryItem itemInSlot = inventorySlots[selectedSlot].GetComponentInChildren<InventoryItem>();
         if (itemInSlot == null) return;
 
+        // select for crafting
+        bool isMaterial = itemInSlot.item.type == ItemType.Material;
+        if (isMaterial)
+            inventorySlots[selectedSlot].toggleForCrafting();
+
+        SetInventoryMode();
+
+        // drop or consume
+        if (mode == InventoryMode.Crafting) return;
         player.UseItem(itemInSlot);
 
         bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
         if (isDroppable)
-        {
-            if (itemInSlot.count == 1)
-                Destroy(itemInSlot.gameObject);
-            else
-            {
-                itemInSlot.count--;
-                itemInSlot.RefreshCount();
-            }
+            lowerCountInSlot(itemInSlot);
+    }
 
+    void lowerCountInSlot(InventoryItem inventoryItem)
+    {
+        if (inventoryItem.count == 1)
+            Destroy(inventoryItem.gameObject);
+        else
+        {
+            inventoryItem.count--;
+            inventoryItem.RefreshCount();
         }
     }
+
+    void SetInventoryMode()
+    {
+        bool isCraftingMode = false;
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            if (slot.MarkedForCrafting) isCraftingMode = true;
+        }
+
+        mode = isCraftingMode ? InventoryMode.Crafting : InventoryMode.Normal;
+        combineButton.interactable = isCraftingMode;
+    }
+}
+
+public enum InventoryMode
+{
+    Normal,
+    Crafting
 }

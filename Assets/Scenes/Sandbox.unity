@@ -4775,7 +4775,7 @@ GameObject:
   - component: {fileID: 762462967}
   - component: {fileID: 762462966}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CombineButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4839,11 +4839,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 762462967}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1789548387}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: CraftItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &762462967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9574,8 +9586,16 @@ MonoBehaviour:
   - {fileID: 1725476322}
   inventoryItemPrefab: {fileID: 648932994034912782, guid: 4109d3eab3c723c44b35add286bf7e70, type: 3}
   player: {fileID: 1374601351}
-  item1: {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
-  item2: {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
+  combineButton: {fileID: 762462966}
+  maxStackedItems: 64
+  startingItems:
+  - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
+  - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
+  - {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
+  - {fileID: 11400000, guid: cb1cc96d879b79c4f8763475dc3c7e34, type: 2}
+  - {fileID: 11400000, guid: 207acfa5390d06648b441212441e4790, type: 2}
+  recipes:
+  - {fileID: 11400000, guid: 6189bca3f6e1ed74bb6faaa4935ad554, type: 2}
 --- !u!4 &1789548388
 Transform:
   m_ObjectHideFlags: 0
