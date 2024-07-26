@@ -3,17 +3,16 @@ using UnityEngine;
 public class DialogTrigger : MonoBehaviour
 {
 
-	public Dialog dialog;
+	public Dialog _dialog;
 
 	public void TriggerDialogue()
 	{
-		FindObjectOfType<DialogManager>().StartDialog(dialog);
+		FindFirstObjectByType<DialogManager>().StartDialog(_dialog);
 	}
 
 	public void TriggerEndDialog()
 	{
-		FindObjectOfType<DialogManager>().EndDialog();
-
+		FindFirstObjectByType<DialogManager>().EndDialog();
 	}
 
 

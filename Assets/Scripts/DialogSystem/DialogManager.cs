@@ -5,53 +5,55 @@ using System.Collections;
 
 public class DialogManager : MonoBehaviour
 {
-	private Queue<string> sentences;
-	public TextMeshProUGUI dialogText;
-	public Animator dialogAnimator;
+	private Queue<string> _sentences;
+	public TextMeshProUGUI _dialogText;
+	public TextMeshProUGUI _dialogButtonText;
+	public Animator _dialogAnimator;
 
 	void Start()
 	{
-		sentences = new Queue<string>();
+		_sentences = new Queue<string>();
 	}
 
 	public void StartDialog(Dialog dialog)
 	{
-		sentences.Clear();
+		_sentences.Clear();
 
 		foreach (string sentence in dialog._sentences)
 		{
-			sentences.Enqueue(sentence);
+			_sentences.Enqueue(sentence);
 		}
-		dialogAnimator.SetBool("isOpen", true);
+		_dialogAnimator.SetBool("isOpen", true);
 
 		DisplayNextSentence();
 	}
 
 	public void DisplayNextSentence()
 	{
-		if (sentences.Count == 0)
+		if (_sentences.Count == 0)
 		{
 			EndDialog();
 			return;
 		}
 
-		string sentence = sentences.Dequeue();
-		dialogText.text = sentence;
+		string sentence = _sentences.Dequeue();
+		_dialogText.text = sentence;
+		_dialogButtonText.text = "NEXT >>";
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
 	}
 
 	public void EndDialog()
 	{
-		dialogAnimator.SetBool("isOpen", false);
+		_dialogAnimator.SetBool("isOpen", false);
 	}
 
 	IEnumerator TypeSentence(string sentence)
 	{
-		dialogText.text = "";
+		_dialogText.text = "";
 		foreach (char letter in sentence.ToCharArray())
 		{
-			dialogText.text += letter;
+			_dialogText.text += letter;
 			yield return null;
 		}
 	}
