@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
     float _speed = 3f;
+
+    [Header("UI")]
+    [SerializeField] Animator _floatingTextAnimator;
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -63,6 +67,7 @@ public class Player : MonoBehaviour
     {
         if (_itemThatCanBeCollected == null) return;
 
+        _floatingTextAnimator.SetTrigger("Reset");
         CollectMaterialAction?.Invoke();
         Destroy(_itemThatCanBeCollected.gameObject);
     }
@@ -71,14 +76,20 @@ public class Player : MonoBehaviour
     {
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null)
+		{
+            _floatingTextAnimator.SetBool("IsVisible", true);
             _itemThatCanBeCollected = collectableItem;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null && collectableItem == _itemThatCanBeCollected)
+		{
+            _floatingTextAnimator.SetBool("IsVisible", false);
             _itemThatCanBeCollected = null;
+        }
     }
 
     public void UseItem(InventoryItem itemInSlot)

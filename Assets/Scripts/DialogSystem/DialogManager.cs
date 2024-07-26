@@ -30,6 +30,14 @@ public class DialogManager : MonoBehaviour
 
 	public void DisplayNextSentence()
 	{
+		if(_sentences.Count > 1)
+		{
+			_dialogButtonText.text = "Next";
+		}else
+		{
+			_dialogButtonText.text = "Exit";
+		}
+
 		if (_sentences.Count == 0)
 		{
 			EndDialog();
@@ -38,7 +46,6 @@ public class DialogManager : MonoBehaviour
 
 		string sentence = _sentences.Dequeue();
 		_dialogText.text = sentence;
-		_dialogButtonText.text = "NEXT >>";
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
 	}

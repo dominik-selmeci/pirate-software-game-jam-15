@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,6 +20,10 @@ public class InventoryManager : MonoBehaviour
     [Header("Recipes")]
     [SerializeField] List<Recipe> recipes;
 
+    [Header("Dialog")]
+    [SerializeField] Dialog dialog;
+    [SerializeField] DialogTrigger dialogTrigger;
+
     int selectedSlot = -1;
     InventoryMode mode = InventoryMode.Normal;
 
@@ -31,6 +36,7 @@ public class InventoryManager : MonoBehaviour
         player.SelectPreviousItem += MoveSelectedSlotToTheLeft;
         player.SelectNextItem += MoveSelectedSlotToTheRight;
         player.CollectMaterialAction += CollectMaterial;
+        dialogTrigger._dialog = dialog;
     }
 
     void CollectMaterial()
@@ -157,7 +163,8 @@ public class InventoryManager : MonoBehaviour
 
         if (choseRecipe == null)
         {
-            Debug.Log("TODO: You can't combine those together");
+            dialogTrigger.TriggerDialogue();
+            StartCoroutine(CloseDialog());
             return;
         }
 
@@ -243,6 +250,12 @@ public class InventoryManager : MonoBehaviour
         mode = isCraftingMode ? InventoryMode.Crafting : InventoryMode.Normal;
         combineButton.interactable = isCraftingMode;
     }
+
+    IEnumerator CloseDialog()
+	{
+        yield return new WaitForSeconds(3);
+        dialogTrigger.TriggerEndDialog();
+	}
 }
 
 public enum InventoryMode
