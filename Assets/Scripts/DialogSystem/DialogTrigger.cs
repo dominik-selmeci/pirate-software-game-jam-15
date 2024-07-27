@@ -4,6 +4,7 @@ public class DialogTrigger : MonoBehaviour
 {
 
 	public Dialog _dialog;
+	public bool playOnce;
 
 	public void TriggerDialogue()
 	{
@@ -13,6 +14,10 @@ public class DialogTrigger : MonoBehaviour
 	public void TriggerEndDialog()
 	{
 		FindFirstObjectByType<DialogManager>().EndDialog();
+		if (playOnce)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 
 
