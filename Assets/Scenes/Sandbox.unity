@@ -3779,6 +3779,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8282180356440405241, guid: e7c1e60ff578af047a66aaee25e94f39, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c85a1cf5d40e7b947aa6bbcf65c9e97b, type: 2}
+    - target: {fileID: 8282180356440405241, guid: e7c1e60ff578af047a66aaee25e94f39, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9434,12 +9442,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6589704774097374228, guid: 18d14ab80bf2aba4db300e006c751ef5, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c85a1cf5d40e7b947aa6bbcf65c9e97b, type: 2}
+    - target: {fileID: 6589704774097374228, guid: 18d14ab80bf2aba4db300e006c751ef5, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3895242494161650155, guid: c85a1cf5d40e7b947aa6bbcf65c9e97b, type: 2}
+    - target: {fileID: 6589704774097374228, guid: 18d14ab80bf2aba4db300e006c751ef5, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 6589704774097374228, guid: 18d14ab80bf2aba4db300e006c751ef5, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589704774097374228, guid: 18d14ab80bf2aba4db300e006c751ef5, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10456,8 +10476,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Next
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c85a1cf5d40e7b947aa6bbcf65c9e97b, type: 2}
+  m_sharedMaterial: {fileID: -3895242494161650155, guid: c85a1cf5d40e7b947aa6bbcf65c9e97b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
