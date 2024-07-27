@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,10 +9,13 @@ public class Player : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
+    [SerializeField] int _maxHealth = 100;
+    int _currentHealth;
     float _speed = 3f;
 
     [Header("UI")]
     [SerializeField] Animator _floatingTextAnimator;
+    [SerializeField] HealthBar _healthBar;
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -34,6 +36,8 @@ public class Player : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
+        _currentHealth = _maxHealth;
+        _healthBar.SetMaxHealth(_maxHealth);
     }
 
     // Update is called once per frame
@@ -79,6 +83,16 @@ public class Player : MonoBehaviour
 		{
             _floatingTextAnimator.SetBool("IsVisible", true);
             _itemThatCanBeCollected = collectableItem;
+        }
+
+		if (collider.CompareTag("DamageZone"))
+		{
+            TakeDamange(20);
+		}
+
+        if (collider.CompareTag("HealthZone"))
+        {
+            RestoreHealth(20);
         }
     }
 
@@ -126,4 +140,16 @@ public class Player : MonoBehaviour
     {
         _canMove = true;
     }
+
+    private void TakeDamange(int _damage)
+	{
+        _currentHealth -= _damage;
+        _healthBar.SetHealth(_currentHealth);
+	}
+
+    private void RestoreHealth(int _health)
+	{
+        _currentHealth += _health;
+        _healthBar.SetHealth(_currentHealth);  
+	}
 }
