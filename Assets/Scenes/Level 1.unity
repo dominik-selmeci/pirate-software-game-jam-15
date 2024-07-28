@@ -460,7 +460,7 @@ MonoBehaviour:
     - '"Only the true light can free the lost souls"'
     - ...hmm, maybe I can try to place (space) my special alchemic torches in the
       middle of darkness?
-  playOnce: 1
+  playOnce: 0
 --- !u!1 &508853374
 GameObject:
   m_ObjectHideFlags: 0
