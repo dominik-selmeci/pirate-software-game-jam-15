@@ -39,11 +39,11 @@ public class DialogManager : MonoBehaviour
 	{
 		if (_sentences.Count > 1)
 		{
-			_dialogButtonText.text = "Next";
+			_dialogButtonText.text = "> Next <";
 		}
 		else
 		{
-			_dialogButtonText.text = "Exit";
+			_dialogButtonText.text = "> Exit <";
 		}
 
 		if (_sentences.Count == 0)
