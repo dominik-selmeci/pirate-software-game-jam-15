@@ -5,6 +5,8 @@ using System.Collections;
 
 public class DialogManager : MonoBehaviour
 {
+	[SerializeField] Dialog startLevelDialog;
+
 	private Queue<string> _sentences;
 	public TextMeshProUGUI _dialogText;
 	public TextMeshProUGUI _dialogButtonText;
@@ -13,6 +15,11 @@ public class DialogManager : MonoBehaviour
 	void Start()
 	{
 		_sentences = new Queue<string>();
+
+		if (startLevelDialog?._sentences?.Length > 0)
+		{
+			StartDialog(startLevelDialog);
+		}
 	}
 
 	public void StartDialog(Dialog dialog)
@@ -30,10 +37,11 @@ public class DialogManager : MonoBehaviour
 
 	public void DisplayNextSentence()
 	{
-		if(_sentences.Count > 1)
+		if (_sentences.Count > 1)
 		{
 			_dialogButtonText.text = "Next";
-		}else
+		}
+		else
 		{
 			_dialogButtonText.text = "Exit";
 		}

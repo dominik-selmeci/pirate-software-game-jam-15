@@ -4359,6 +4359,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7852465780294792123, guid: 4f32e79085908884ca7009190f644e38, type: 3}
   m_PrefabInstance: {fileID: 860669091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &803084499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
+  m_PrefabInstance: {fileID: 8630008706576163177}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef17d1b69a115ee428c06d928ce68230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &839079727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8615,6 +8626,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 484182086226016985, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 803084499}
+    - target: {fileID: 484182086226016985, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayNextSentence
+      objectReference: {fileID: 0}
     - target: {fileID: 917262596974494427, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8749,11 +8768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3747360346150719206, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8969,11 +8988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420974583521810052, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -9205,6 +9224,18 @@ PrefabInstance:
       propertyPath: _dialogButtonText
       value: 
       objectReference: {fileID: 1341780673}
+    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
+      propertyPath: startLevelDialog._sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
+      propertyPath: 'startLevelDialog._sentences.Array.data[0]'
+      value: This tomb is really weird...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
+      propertyPath: 'startLevelDialog._sentences.Array.data[1]'
+      value: I wounder what could happen here.
+      objectReference: {fileID: 0}
     - target: {fileID: 5432705467679262411, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
       propertyPath: m_Name
       value: GameManager
