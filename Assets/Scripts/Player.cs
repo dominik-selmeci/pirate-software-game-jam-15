@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     Animator _animator;
 
     bool _canMove = true;
-    bool _receivingDamage = false;
 
     void Start()
     {
