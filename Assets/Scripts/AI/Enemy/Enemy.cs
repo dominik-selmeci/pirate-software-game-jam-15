@@ -1,61 +1,97 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
 
     [SerializeField] private float speed = 1.5f;
-	[SerializeField] LayerMask layer;
-    private GameObject player;
-    private Vector3 localScale;
+	[SerializeField] private float viewRadius;
+	[SerializeField] Transform[] moveSpots;
+	[SerializeField] LayerMask layerMask;
+	private int randomSpot;
 
-	private bool hasLineOfSight;
+	private Vector3 localScale;
+
+	private float waitTime;
+	public float startWaitTime;
+	private bool isChasing = false;
+
+	private Vector2 lastPos;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         localScale = transform.localScale;
+		randomSpot = Random.Range(0, moveSpots.Length);
+		waitTime = startWaitTime;
+		lastPos = transform.position;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-		if (hasLineOfSight)
-		{
-			transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-		}
-	}
 
 	private void FixedUpdate()
 	{
+		SearchPlayer();
 
-		RaycastHit2D ray = Physics2D.Raycast(transform.position, (player.transform.position - transform.position), 10f);
-		if(ray.collider != null)
+		if (!isChasing)
 		{
-			Debug.Log(ray.collider.tag);
-			if(ray.collider.CompareTag("Walls") || ray.collider.CompareTag("Player"))
+			Patrol();
+		}
+	}
+
+	private void LateUpdate()
+	{
+		Vector2 currentPos = transform.position;
+		Vector2 deltaPos = currentPos - lastPos;
+
+		if (deltaPos.x > 0)
+		{
+			transform.localScale = new Vector3(localScale.x, localScale.y, localScale.z);
+		}
+		else if (deltaPos.x < 0)
+		{
+			transform.localScale = new Vector3(-localScale.x, localScale.y, localScale.z);
+		}
+
+		lastPos = transform.position;
+	}
+
+	private void SearchPlayer()
+	{
+		Collider2D collider = Physics2D.OverlapCircle(transform.position, viewRadius, layerMask);
+		if (collider != null)
+		{
+			if (collider.CompareTag("Player"))
 			{
-				hasLineOfSight = (!ray.collider.CompareTag("Walls"));
-				if (hasLineOfSight)
-				{
-					Debug.DrawRay(transform.position, (player.transform.position - transform.position), Color.green);
-				}
-				else
-				{
-					Debug.DrawRay(transform.position, (player.transform.position - transform.position), Color.red);
-				}
+				StopAllCoroutines();
+				isChasing = true;
+				transform.position = Vector2.MoveTowards(transform.position, collider.transform.position, speed * Time.deltaTime);
+			}
+		}else
+		{
+			isChasing = false;
+		}
+	}
+
+
+	private void Patrol()
+	{
+		transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
+
+		if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
+		{
+			if (waitTime <= 0)
+			{
+				randomSpot = Random.Range(0, moveSpots.Length);
+				waitTime = startWaitTime;
+			}
+			else
+			{
+				waitTime -= Time.deltaTime;
 			}
 		}
 	}
 
-	//private void LateUpdate()
-	//{
-	//	if(transform.position.x > 0)
-	//	{
-	//           transform.localScale = new Vector3(localScale.x, localScale.y, localScale.z);
-	//	}else if(transform.position.x < 0)
-	//	{
-	//           transform.localScale = new Vector3(-localScale.x, localScale.y, localScale.z);
-	//       }
-	//}
+	private void OnDrawGizmos()
+	{
+		Gizmos.DrawWireSphere(transform.position, viewRadius);
+	}
 }
