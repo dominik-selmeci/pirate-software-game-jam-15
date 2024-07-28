@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5432705467679262411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759992167425248817}
+  - component: {fileID: 7978642281970776547}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &759992167425248817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432705467679262411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1079.8298, y: 113.37248, z: 0.009540066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7978642281970776547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5432705467679262411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5114cfa58832bb4b83cc93580e3b3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inventoryItemPrefab: {fileID: 648932994034912782, guid: 4109d3eab3c723c44b35add286bf7e70, type: 3}
+  player: {fileID: 0}
+  combineButton: {fileID: 0}
+  maxStackedItems: 64
+  startingItems:
+  - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
+  - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
+  - {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
+  - {fileID: 11400000, guid: cb1cc96d879b79c4f8763475dc3c7e34, type: 2}
+  - {fileID: 11400000, guid: 207acfa5390d06648b441212441e4790, type: 2}
+  recipes:
+  - {fileID: 11400000, guid: 6189bca3f6e1ed74bb6faaa4935ad554, type: 2}

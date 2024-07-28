@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     Animator _animator;
 
     bool _canMove = true;
+    bool _receivingDamage = false;
 
     void Start()
     {
@@ -80,30 +81,43 @@ public class Player : MonoBehaviour
     {
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null)
-		{
+        {
             _floatingTextAnimator.SetBool("IsVisible", true);
             _itemThatCanBeCollected = collectableItem;
         }
 
-		if (collider.CompareTag("DamageZone"))
-		{
-            TakeDamange(20);
-		}
+        if (collider.CompareTag("DamageZone"))
+            InvokeRepeating(nameof(ReceiveDamage), 0, 0.33f);
 
         if (collider.CompareTag("HealthZone"))
-        {
-            RestoreHealth(20);
-        }
+            InvokeRepeating(nameof(Heal), 0, 0.33f);
+
+    }
+
+    void ReceiveDamage()
+    {
+        TakeDamage(1);
+    }
+
+    void Heal()
+    {
+        RestoreHealth(1);
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null && collectableItem == _itemThatCanBeCollected)
-		{
+        {
             _floatingTextAnimator.SetBool("IsVisible", false);
             _itemThatCanBeCollected = null;
         }
+
+        if (collider.CompareTag("DamageZone"))
+            CancelInvoke(nameof(ReceiveDamage));
+
+        if (collider.CompareTag("HealthZone"))
+            CancelInvoke(nameof(Heal));
     }
 
     public void UseItem(InventoryItem itemInSlot)
@@ -141,15 +155,20 @@ public class Player : MonoBehaviour
         _canMove = true;
     }
 
-    private void TakeDamange(int _damage)
-	{
+    private void TakeDamage(int _damage)
+    {
+        if (_currentHealth <= 0) return;
+        // TODO: player should die and the level should restart
+
         _currentHealth -= _damage;
         _healthBar.SetHealth(_currentHealth);
-	}
+    }
 
     private void RestoreHealth(int _health)
-	{
+    {
+        if (_currentHealth >= _maxHealth) return;
+
         _currentHealth += _health;
-        _healthBar.SetHealth(_currentHealth);  
-	}
+        _healthBar.SetHealth(_currentHealth);
+    }
 }
