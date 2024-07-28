@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 2a1cf3fb6459f9f4dad02ab8baff6550
+guid: efe593721c9de5641a5190ad9e3f4969
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8632538420355703000
-    second: mouse_cursor3_0
+      213: 2685318379447967336
+    second: shade_base_0
+  - first:
+      213: 656563423585867190
+    second: shade_base_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +27,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -51,13 +54,13 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 7
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mouse_cursor3_0
+      name: shade_base_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 24
+        y: 82
         width: 24
-        height: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82f59c83b00133880800000000000000
-      internalID: -8632538420355703000
+      spriteID: 86ed2d3b6da244520800000000000000
+      internalID: 2685318379447967336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shade_base_1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 18
+        width: 26
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b5995384f49c1900800000000000000
+      internalID: 656563423585867190
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mouse_cursor3_0: -8632538420355703000
+      shade_base_0: 2685318379447967336
+      shade_base_1: 656563423585867190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
