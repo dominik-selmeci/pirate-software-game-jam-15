@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1687659060506113780}
   - component: {fileID: 697393334810152295}
   - component: {fileID: 7956504592399305374}
+  - component: {fileID: 37208349773282395}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -168,9 +169,10 @@ MonoBehaviour:
   _torch: {fileID: 3575707644374670998, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
   _baseSpeed: 3
   _maxHealth: 100
-  _floatingTextAnimator: {fileID: 0}
+  _floatingTextAnimator: {fileID: 2908503561184832487}
   _healthBar: {fileID: 0}
   _itemThatCanBeCollected: {fileID: 0}
+  _canMove: 1
 --- !u!60 &1687659060506113780
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -348,6 +350,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &37208349773282395
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767016523448101795}
+  m_Enabled: 1
 --- !u!1 &7531801783262204177
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +639,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7c1e60ff578af047a66aaee25e94f39, type: 3}
+--- !u!95 &2908503561184832487 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3166761015402010433, guid: e7c1e60ff578af047a66aaee25e94f39, type: 3}
+  m_PrefabInstance: {fileID: 265585701107989670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5201039813971086521 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5440984890686304287, guid: e7c1e60ff578af047a66aaee25e94f39, type: 3}
