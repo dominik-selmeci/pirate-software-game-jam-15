@@ -44,7 +44,14 @@ public class InventoryManager : MonoBehaviour
         if (player._itemThatCanBeCollected == null) return;
 
         if (player._itemThatCanBeCollected.item != null)
-            AddItem(player._itemThatCanBeCollected.item);
+		{
+            Item item = player._itemThatCanBeCollected.item;
+            for(int i = 0; i < item.quantity; i++)
+			{
+                AddItem(player._itemThatCanBeCollected.item);
+            }
+		}
+            
 
         List<Item> randomItems = player._itemThatCanBeCollected.randomItems;
         if (randomItems.Count > 0)
@@ -223,8 +230,11 @@ public class InventoryManager : MonoBehaviour
         player.UseItem(itemInSlot);
 
         bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
-        if (isDroppable)
+        bool isConsumable = itemInSlot.item.type == ItemType.Consumable;
+        if (isDroppable || isConsumable)
+		{
             lowerCountInSlot(itemInSlot);
+        }
     }
 
     void lowerCountInSlot(InventoryItem inventoryItem)

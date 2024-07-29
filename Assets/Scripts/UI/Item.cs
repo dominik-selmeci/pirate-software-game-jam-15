@@ -5,11 +5,13 @@ using UnityEngine.Tilemaps;
 public class Item : ScriptableObject
 {
     [Header("Only gameplay")]
+    public string itemName;
     public TileBase tile;
     public GameObject gameObject;
     public ItemType type;
     public ActionType actionType;
     public Vector2Int range = new Vector2Int(5, 4);
+    public int quantity = 1;
 
     [Header("Only UI")]
     public bool stackable = true;
@@ -28,5 +30,7 @@ public enum ItemType
 
 public enum ActionType
 {
-    Mine
+    Mine,
+    Cure,
+    Protect
 }

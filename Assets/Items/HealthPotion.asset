@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cdd47d4b6f004ca68716dfa4a7a61, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
+  itemName: Health Potion
   tile: {fileID: 0}
-  gameObject: {fileID: 3575707644374670998, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
+  gameObject: {fileID: 7568731810068578170, guid: 30ed59605b40de14eba3c63950e18445, type: 3}
   type: 3
-  actionType: 0
+  actionType: 1
   range: {x: 5, y: 4}
   stackable: 1
-  image: {fileID: 6099581493293703690, guid: f9d0301e4a1a61146bfc90025b618285, type: 3}
+  image: {fileID: -1710411290, guid: 94a3a6458a9292d4fa7e060f447c2533, type: 3}

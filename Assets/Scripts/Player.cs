@@ -1,4 +1,6 @@
 using System;
+using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     float _speed = 3f;
 
     [Header("UI")]
+    [SerializeField] TextMeshProUGUI _floatingText;
     [SerializeField] Animator _floatingTextAnimator;
     [SerializeField] HealthBar _healthBar;
 
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
     AudioSource _audioSource;
 
     public bool _canMove = true;
+   
 
     void Start()
     {
@@ -86,6 +90,7 @@ public class Player : MonoBehaviour
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null)
         {
+            _floatingText.text = "Hold [E] to craft \n" + collectableItem.item.itemName;
             _floatingTextAnimator.SetBool("IsVisible", true);
             _itemThatCanBeCollected = collectableItem;
         }
@@ -100,12 +105,12 @@ public class Player : MonoBehaviour
 
     void ReceiveDamage()
     {
-        TakeDamage(1);
+        TakeDamage(3);
     }
 
     void Heal()
     {
-        RestoreHealth(1);
+        RestoreHealth(25);
     }
 
     void OnTriggerExit2D(Collider2D collider)
@@ -127,12 +132,24 @@ public class Player : MonoBehaviour
     public void UseItem(InventoryItem itemInSlot)
     {
         bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
+        bool isConsumable = itemInSlot.item.type == ItemType.Consumable;
         if (isDroppable)
         {
             Vector2 dropPosition = new Vector2(_rigidBody.position.x, _rigidBody.position.y - 1);
             Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
             PlayDropAnimation();
+		}else if (isConsumable)
+        {
+            Debug.Log(itemInSlot.item.actionType);
+            if (itemInSlot.item.actionType.ToString() == "Cure")
+			{
+                Heal();
+            }else
+			{
+                return; //TODO: make shield potion
+			}
         }
+
     }
 
     void PlayDropAnimation()

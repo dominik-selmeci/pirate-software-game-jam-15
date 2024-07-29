@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cdd47d4b6f004ca68716dfa4a7a61, type: 3}
   m_Name: Torch
   m_EditorClassIdentifier: 
+  itemName: Torch
   tile: {fileID: 0}
   gameObject: {fileID: 3575707644374670998, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
   type: 2

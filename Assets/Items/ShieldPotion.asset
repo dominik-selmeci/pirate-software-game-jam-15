@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 492cdd47d4b6f004ca68716dfa4a7a61, type: 3}
-  m_Name: Sticks
+  m_Name: ShieldPotion
   m_EditorClassIdentifier: 
-  itemName: Stick
+  itemName: Shield Potion
   tile: {fileID: 0}
   gameObject: {fileID: 0}
-  type: 0
-  actionType: 0
+  type: 3
+  actionType: 2
   range: {x: 5, y: 4}
-  quantity: 4
   stackable: 1
-  image: {fileID: -170976432, guid: f9d0301e4a1a61146bfc90025b618285, type: 3}
+  image: {fileID: 1184636125, guid: 94a3a6458a9292d4fa7e060f447c2533, type: 3}

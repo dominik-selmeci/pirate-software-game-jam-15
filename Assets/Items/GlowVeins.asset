@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cdd47d4b6f004ca68716dfa4a7a61, type: 3}
   m_Name: GlowVeins
   m_EditorClassIdentifier: 
+  itemName: Glow Vein
   tile: {fileID: 0}
   gameObject: {fileID: 0}
   type: 0
