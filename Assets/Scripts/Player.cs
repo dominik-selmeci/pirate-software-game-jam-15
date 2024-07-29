@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     PlayerInput _playerInput;
     Animator _animator;
 
-    bool _canMove = true;
+    public bool _canMove = true;
 
     void Start()
     {
