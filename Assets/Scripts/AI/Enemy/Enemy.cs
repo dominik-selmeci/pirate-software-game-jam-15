@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
 		randomSpot = Random.Range(0, moveSpots.Length);
 		waitTime = startWaitTime;
 		lastPos = transform.position;
+		player = FindFirstObjectByType<Player>();
     }
 
 	private void FixedUpdate()
