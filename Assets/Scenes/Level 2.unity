@@ -4912,10 +4912,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OminousSpot
       objectReference: {fileID: 0}
-    - target: {fileID: 5444847923638535862, guid: 64918bf12414e604da3ec71c5fb26150, type: 3}
-      propertyPath: m_Volume
-      value: 0.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
