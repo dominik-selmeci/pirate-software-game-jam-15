@@ -13,6 +13,7 @@ public class ProgressManager : MonoBehaviour
         totalSpots = FindObjectsOfType<OminousSpot>().Length;
         progressBar.SetMaxProgress(totalSpots);
         enemies = FindObjectsOfType<Enemy>();
+        progressBar.SetProgress(0);
     }
 
     // Update is called once per frame
@@ -28,15 +29,15 @@ public class ProgressManager : MonoBehaviour
         Debug.Log("Total Spots " + totalSpots);
         Debug.Log("New Progress " + newProgress);
 
-		if (newProgress == 1)
-		{
-			foreach (Enemy enemy in enemies)
-			{
-                if(enemy != null)
-				{
+        if (newProgress == 1)
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy != null)
+                {
                     enemy.Die();
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 }
