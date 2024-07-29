@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
     Animator _animator;
-
+    AudioSource _audioSource;
     bool _canMove = true;
 
     void Start()
@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
     }
@@ -58,6 +59,9 @@ public class Player : MonoBehaviour
 
         if (_playerInput.actions["Next"].triggered)
             SelectNextItem?.Invoke();
+
+        if (_playerInput.actions["Interact"].WasPressedThisFrame() && _itemThatCanBeCollected != null)
+            _audioSource.Play();
 
         if (_playerInput.actions["Interact"].triggered)
             CollectMaterial();
