@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 	[SerializeField] private float viewRadius;
 	[SerializeField] Transform[] moveSpots;
 	[SerializeField] LayerMask layerMask;
+	[SerializeField] Player player;
 	private int randomSpot;
 
 	private Vector3 localScale;
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
 	private bool isChasing = false;
 
 	private Vector2 lastPos;
+	
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +36,9 @@ public class Enemy : MonoBehaviour
 		if (!isChasing)
 		{
 			Patrol();
+		}else
+		{
+			transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 		}
 	}
 
@@ -61,13 +66,8 @@ public class Enemy : MonoBehaviour
 		{
 			if (collider.CompareTag("Player"))
 			{
-				StopAllCoroutines();
 				isChasing = true;
-				transform.position = Vector2.MoveTowards(transform.position, collider.transform.position, speed * Time.deltaTime);
 			}
-		}else
-		{
-			isChasing = false;
 		}
 	}
 
@@ -90,8 +90,9 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmos()
+	public void Die()
 	{
-		Gizmos.DrawWireSphere(transform.position, viewRadius);
+		Destroy(gameObject);
+		Destroy(this);
 	}
 }
