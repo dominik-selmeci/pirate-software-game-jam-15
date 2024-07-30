@@ -31607,9 +31607,17 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
+      propertyPath: _shield
+      value: 
+      objectReference: {fileID: 1511564572}
+    - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1105753951}
+    - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
+      propertyPath: _damagePanel
+      value: 
+      objectReference: {fileID: 7892948035047306168}
     - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
       propertyPath: damageAnimator
       value: 
@@ -31679,6 +31687,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566414363d29f3d45a95354351ad94d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1511564572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6103220360329067942, guid: 4f32e79085908884ca7009190f644e38, type: 3}
+  m_PrefabInstance: {fileID: 1511564569}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1526046406
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33529,11 +33542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3747360346150719206, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33749,11 +33762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420974583521810052, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33817,6 +33830,11 @@ MonoBehaviour:
 --- !u!95 &7892948035047306167 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7001871789254224145, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+  m_PrefabInstance: {fileID: 7892948035047306164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7892948035047306168 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7016206215368635980, guid: b4706369f653ee449af8dff825db1c04, type: 3}
   m_PrefabInstance: {fileID: 7892948035047306164}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807

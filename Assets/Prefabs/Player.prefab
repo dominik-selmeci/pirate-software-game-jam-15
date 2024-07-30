@@ -169,7 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _torch: {fileID: 3575707644374670998, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
   _enemy: {fileID: 851017593299682498, guid: 9cb215e29170694489fe521e7eb46c9a, type: 3}
-  shield: {fileID: 6103220360329067942}
+  _shield: {fileID: 6103220360329067942}
+  _damagePanel: {fileID: 0}
   _baseSpeed: 3
   _maxHealth: 100
   _floatingText: {fileID: 8169454882176092255}
@@ -178,6 +179,7 @@ MonoBehaviour:
   _drinkPotionSFX: {fileID: 8300000, guid: 697302019cfcdb74a81f28ca689a19fd, type: 3}
   _placeItemSFX: {fileID: 8300000, guid: 968a8e4b5f7c70b448e801e8fa48471e, type: 3}
   _collectMaterialSFX: {fileID: 8300000, guid: a35e9bc30e8ef884f9951e808d460621, type: 3}
+  damageAnimator: {fileID: 0}
   _itemThatCanBeCollected: {fileID: 0}
   _canMove: 1
   _shieldActive: 0

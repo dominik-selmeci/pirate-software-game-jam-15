@@ -11,7 +11,8 @@ public class Player : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] GameObject _torch;
     [SerializeField] GameObject _enemy;
-    [SerializeField] GameObject shield;
+    [SerializeField] GameObject _shield;
+    [SerializeField] GameObject _damagePanel;
 
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
@@ -58,7 +59,8 @@ public class Player : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
-
+        if(_damagePanel != null) 
+            damageAnimator = _damagePanel.GetComponent<Animator>();
         _dialogManager = FindFirstObjectByType<DialogManager>();
     }
 
@@ -185,11 +187,11 @@ public class Player : MonoBehaviour
 
     IEnumerator ActiveShield()
     {
-        shield.SetActive(true);
+        _shield.SetActive(true);
         _shieldActive = true;
         yield return new WaitForSeconds(15);
         _shieldActive = false;
-        shield.SetActive(false);
+        _shield.SetActive(false);
     }
 
     void PlayDropAnimation()
@@ -225,7 +227,13 @@ public class Player : MonoBehaviour
                 Die();
             }
 
-            damageAnimator.SetTrigger("Play");
+            if(_damagePanel != null)
+			{
+               
+                _damagePanel.SetActive(true);
+                damageAnimator.SetTrigger("Play");
+               
+			}
             _currentHealth -= _damage;
             _healthBar.SetHealth(_currentHealth);
         }
