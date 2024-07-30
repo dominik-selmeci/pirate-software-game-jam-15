@@ -16,11 +16,14 @@ public class DialogManager : MonoBehaviour
 
 	void Start()
 	{
-		_sentences = new Queue<string>();
-
-		if (startLevelDialog?._sentences?.Length > 0)
+		if(_dialogAnimator != null)
 		{
-			StartDialog(startLevelDialog);
+			_sentences = new Queue<string>();
+
+			if (startLevelDialog?._sentences?.Length > 0)
+			{
+				StartDialog(startLevelDialog);
+			}
 		}
 	}
 

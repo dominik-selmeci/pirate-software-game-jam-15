@@ -7802,12 +7802,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 301694902060302327, guid: cb98774b760ec4041aa2ab25d7d2f381, type: 3}
       propertyPath: '_dialog._sentences.Array.data[5]'
-      value: eliminate all OMINOUS SPOTS to send them back to the void...
+      value: '...run by holding [SHIFT]  to prevent them from chasing you... '
       objectReference: {fileID: 0}
     - target: {fileID: 301694902060302327, guid: cb98774b760ec4041aa2ab25d7d2f381, type: 3}
       propertyPath: '_dialog._sentences.Array.data[6]'
-      value: if you need to recovery your health, you can craft a HEALTH POTION using
-        GLOWING MOSS and GLOWING PEBBLES).
+      value: ...eliminate all OMINOUS SPOTS to send them back to the void).
       objectReference: {fileID: 0}
     - target: {fileID: 386563670044601259, guid: cb98774b760ec4041aa2ab25d7d2f381, type: 3}
       propertyPath: m_Name
@@ -8159,6 +8158,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &782642475
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 771383386786061233, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_Name
+      value: DialogTriggerWithSprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003323863035359954, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.949902
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.4055967
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.7888947
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210684039267586888, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314867072986276003, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: _dialog._sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314867072986276003, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: '_dialog._sentences.Array.data[1]'
+      value: '"if you need to recovery your health, you can craft a HEALTH POTION
+        using GLOWING MOSS and GLOWING PEBBLES"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314867072986276003, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
+      propertyPath: '_dialog._sentences.Array.data[3]'
+      value: if you need to recovery your health, you can craft a HEALTH POTION using
+        GLOWING MOSS and GLOWING PEBBLES).
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86b721ddab46fba4db2e175541926eaa, type: 3}
 --- !u!1001 &820020723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33446,11 +33520,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3747360346150719206, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33666,11 +33740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420974583521810052, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33763,3 +33837,4 @@ SceneRoots:
   - {fileID: 1850365411}
   - {fileID: 1635128746}
   - {fileID: 1853044052}
+  - {fileID: 782642475}
