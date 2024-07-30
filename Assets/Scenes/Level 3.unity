@@ -31533,10 +31533,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
-      propertyPath: _enemy
-      value: 
-      objectReference: {fileID: 851017593299682498, guid: 9cb215e29170694489fe521e7eb46c9a, type: 3}
-    - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1105753951}

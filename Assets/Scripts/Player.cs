@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] GameObject _torch;
     [SerializeField] GameObject _enemy;
+    [SerializeField] GameObject shield;
 
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
@@ -34,7 +36,8 @@ public class Player : MonoBehaviour
     AudioSource _audioSource;
 
     public bool _canMove = true;
-   
+    public bool _shieldActive = false;
+
     void Start()
     {
         _speed = _baseSpeed;
@@ -147,12 +150,21 @@ public class Player : MonoBehaviour
             if (itemInSlot.item.actionType.ToString() == "Cure")
 			{
                 Heal();
-            }else
+            }else if(itemInSlot.item.actionType.ToString() == "Protect")
 			{
-                return; //TODO: make shield potion
+                StartCoroutine(ActiveShield());
 			}
         }
 
+    }
+
+    IEnumerator ActiveShield()
+	{
+        shield.SetActive(true);
+        _shieldActive = true;
+        yield return new WaitForSeconds(15);
+        _shieldActive = false;
+        shield.SetActive(false);
     }
 
     void PlayDropAnimation()
@@ -181,13 +193,16 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int _damage)
     {
-        if (_currentHealth <= 0)
-        {
-            Die();
-        }
+		if (!_shieldActive)
+		{
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
 
-        _currentHealth -= _damage;
-        _healthBar.SetHealth(_currentHealth);
+            _currentHealth -= _damage;
+            _healthBar.SetHealth(_currentHealth);
+        }
     }
 
     private void RestoreHealth(int _health)

@@ -229,9 +229,7 @@ public class InventoryManager : MonoBehaviour
         if (mode == InventoryMode.Crafting) return;
         player.UseItem(itemInSlot);
 
-        bool isDroppable = itemInSlot.item.type == ItemType.Droppable;
-        bool isConsumable = itemInSlot.item.type == ItemType.Consumable;
-        if (isDroppable || isConsumable)
+        if (!isMaterial)
 		{
             lowerCountInSlot(itemInSlot);
         }
