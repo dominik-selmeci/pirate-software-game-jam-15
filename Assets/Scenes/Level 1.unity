@@ -175,135 +175,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
---- !u!1 &237054139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 237054141}
-  - component: {fileID: 237054140}
-  m_Layer: 0
-  m_Name: Music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!82 &237054140
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237054139}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b1043ed44504ffc4a87191a568e8a7da, type: 3}
-  m_Resource: {fileID: 8300000, guid: b1043ed44504ffc4a87191a568e8a7da, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!4 &237054141
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 237054139}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &260706779
 GameObject:
   m_ObjectHideFlags: 0
@@ -9950,24 +9821,6 @@ PrefabInstance:
       propertyPath: _dialogButtonText
       value: 
       objectReference: {fileID: 7892948035047306165}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: startLevelDialog._sentences.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[0]'
-      value: 'This looks like an really old ancient dungeon. '
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[1]'
-      value: Something's not right here for sure. I feel a dark presense in this
-        tomb...
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[2]'
-      value: and on the other side I also feel small portions of life essence deep
-        down.
-      objectReference: {fileID: 0}
     - target: {fileID: 5432705467679262411, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -9980,18 +9833,6 @@ PrefabInstance:
       propertyPath: combineButton
       value: 
       objectReference: {fileID: 762462966}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: startingItems.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startingItems.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startingItems.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
     - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
       propertyPath: 'inventorySlots.Array.data[0]'
       value: 
@@ -10276,11 +10117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3747360346150719206, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10500,11 +10341,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8420974583521810052, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10584,7 +10425,6 @@ SceneRoots:
   - {fileID: 947714814}
   - {fileID: 2164208875594648669}
   - {fileID: 2002078348}
-  - {fileID: 237054141}
   - {fileID: 820020723}
   - {fileID: 682135554}
   - {fileID: 1479997483}

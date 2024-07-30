@@ -8,6 +8,8 @@ public class ProgressManager : MonoBehaviour
     int totalSpots;
     Enemy[] enemies;
 
+    [HideInInspector] public bool isRoomCleansed = false;
+
     private void Awake()
     {
         totalSpots = FindObjectsOfType<OminousSpot>().Length;
@@ -26,7 +28,7 @@ public class ProgressManager : MonoBehaviour
             progressBar.SetProgress(_progress);
         }
 
-        if (newProgress == totalSpots)
+        if (newProgress == totalSpots && !isRoomCleansed)
         {
             foreach (Enemy enemy in enemies)
             {
@@ -35,6 +37,8 @@ public class ProgressManager : MonoBehaviour
                     enemy.Die();
                 }
             }
+
+            isRoomCleansed = true;
         }
     }
 }
