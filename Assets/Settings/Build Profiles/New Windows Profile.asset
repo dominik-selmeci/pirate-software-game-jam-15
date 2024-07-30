@@ -25,6 +25,8 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/Level 1.unity
   - m_enabled: 1
+    m_path: Assets/Scenes/Level 2.unity
+  - m_enabled: 1
     m_path: Assets/Scenes/Level 3.unity
   - m_enabled: 1
     m_path: Assets/Scenes/Level 4.unity

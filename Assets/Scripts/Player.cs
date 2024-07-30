@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _torch;
     [SerializeField] GameObject _enemy;
     [SerializeField] GameObject _shield;
-    [SerializeField] GameObject _damagePanel;
     [SerializeField] DamagePostProcessing damagePostProcessing;
 
     [Header("Properties")]
@@ -30,10 +29,6 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip _drinkPotionSFX;
     [SerializeField] AudioClip _placeItemSFX;
     [SerializeField] AudioClip _collectMaterialSFX;
-
-    [Header("Animators")]
-    [SerializeField] Animator damageAnimator;
-
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -60,8 +55,6 @@ public class Player : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
-        if(_damagePanel != null) 
-            damageAnimator = _damagePanel.GetComponent<Animator>();
         _dialogManager = FindFirstObjectByType<DialogManager>();
     }
 

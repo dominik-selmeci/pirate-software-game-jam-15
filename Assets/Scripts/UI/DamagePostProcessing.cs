@@ -35,8 +35,6 @@ public class DamagePostProcessing : MonoBehaviour
 		{
             isPlaying = true;
             intesity = 1f;
-
-            //vignette.enabled.Override(true);
             vignette.intensity.Override(0.75f);
             vignette.SetAllOverridesTo(true);
 

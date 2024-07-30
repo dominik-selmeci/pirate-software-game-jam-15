@@ -6,12 +6,6 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GameIsPaused = false;
 	public GameObject pauseMenuUI;
-	DamagePanel damagePanel;
-
-	private void Start()
-	{
-		damagePanel = GetComponentInParent<DamagePanel>();
-	}
 
 	// Update is called once per frame
 	void Update()
@@ -20,17 +14,9 @@ public class PauseMenu : MonoBehaviour
 		{
 			if (GameIsPaused)
 			{
-				if (damagePanel != null)
-				{
-					damagePanel.DisabelPanel();
-				}
 				ResumeGame();
 			}else
 			{
-				if (damagePanel != null)
-				{
-					damagePanel.DisabelPanel();
-				}
 				PauseGame();
 			}
 		}

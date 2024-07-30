@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  viewRadius: 8
+  viewRadius: 6
   moveSpots:
   - {fileID: 0}
   - {fileID: 0}
