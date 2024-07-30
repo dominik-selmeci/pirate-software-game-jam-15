@@ -9449,7 +9449,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.082798, y: -0.19428, z: -10}
+  m_LocalPosition: {x: -17.076414, y: -0.19522999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32830,6 +32830,10 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1105753951}
+    - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
+      propertyPath: damageAnimator
+      value: 
+      objectReference: {fileID: 2130533749}
     - target: {fileID: 6528556688092602432, guid: 4f32e79085908884ca7009190f644e38, type: 3}
       propertyPath: m_Camera
       value: 
@@ -34533,6 +34537,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64918bf12414e604da3ec71c5fb26150, type: 3}
+--- !u!95 &2130533749 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2633245193207002023, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+  m_PrefabInstance: {fileID: 7892948035047306164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2140578920 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 409458956748598961, guid: b4706369f653ee449af8dff825db1c04, type: 3}
@@ -35654,6 +35663,22 @@ PrefabInstance:
     - target: {fileID: 8244015827731438741, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295038617111562016, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295038617111562016, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+      propertyPath: m_Color.b
+      value: 0.13705944
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295038617111562016, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+      propertyPath: m_Color.g
+      value: 0.13705944
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295038617111562016, guid: b4706369f653ee449af8dff825db1c04, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8301887
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x

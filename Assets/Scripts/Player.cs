@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip _placeItemSFX;
     [SerializeField] AudioClip _collectMaterialSFX;
 
+    [Header("Animators")]
+    [SerializeField] Animator damageAnimator;
+
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -222,6 +225,7 @@ public class Player : MonoBehaviour
                 Die();
             }
 
+            damageAnimator.SetTrigger("Play");
             _currentHealth -= _damage;
             _healthBar.SetHealth(_currentHealth);
         }
