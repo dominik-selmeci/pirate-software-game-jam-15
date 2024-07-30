@@ -6,18 +6,16 @@ public class LostSoulCutscene : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] DialogTrigger dialogTrigger;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if (player != null)
+	private void Awake()
+	{
+        if (player != null && animator != null)
         {
             player._canMove = false;
-
             animator.SetTrigger("Play");
         }
     }
 
-    public void TriggerDialog()
+	public void TriggerDialog()
 	{
         dialogTrigger.TriggerDialogue();
 	}

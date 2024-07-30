@@ -203,5 +203,6 @@ public class Player : MonoBehaviour
         Instantiate(_enemy.gameObject, transform.position, Quaternion.identity);
         Destroy(gameObject.GetComponent<SpriteRenderer>());
         Destroy(this);
+        GameObject.FindFirstObjectByType<GameOver>().gameOver();
     }
 }
