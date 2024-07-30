@@ -12,6 +12,8 @@ public class DialogManager : MonoBehaviour
 	public TextMeshProUGUI _dialogButtonText;
 	public Animator _dialogAnimator;
 
+	public bool isOpen;
+
 	void Start()
 	{
 		_sentences = new Queue<string>();
@@ -30,7 +32,8 @@ public class DialogManager : MonoBehaviour
 		{
 			_sentences.Enqueue(sentence);
 		}
-		_dialogAnimator.SetBool("isOpen", true);
+		isOpen = true;
+		_dialogAnimator.SetBool("isOpen", isOpen);
 
 		DisplayNextSentence();
 	}
@@ -60,7 +63,8 @@ public class DialogManager : MonoBehaviour
 
 	public void EndDialog()
 	{
-		_dialogAnimator.SetBool("isOpen", false);
+		isOpen = false;
+		_dialogAnimator.SetBool("isOpen", isOpen);
 	}
 
 	IEnumerator TypeSentence(string sentence)

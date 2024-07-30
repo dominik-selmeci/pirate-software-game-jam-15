@@ -16,7 +16,7 @@ public class DialogTrigger : MonoBehaviour
 		FindFirstObjectByType<DialogManager>().EndDialog();
 		if (playOnce)
 		{
-			Destroy(this.gameObject);
+			Destroy(gameObject);
 		}
 	}
 

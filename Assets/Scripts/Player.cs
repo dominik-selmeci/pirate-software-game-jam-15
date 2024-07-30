@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
 
     public bool _canMove = true;
     public bool _shieldActive = false;
+    DialogManager _dialogManager;
 
     void Start()
     {
@@ -54,6 +55,8 @@ public class Player : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
+
+        _dialogManager = FindFirstObjectByType<DialogManager>();
     }
 
     // Update is called once per frame
@@ -67,7 +70,15 @@ public class Player : MonoBehaviour
         }
 
         if (_playerInput.actions["UseItem"].triggered)
+        {
+            if (_dialogManager.isOpen)
+            {
+                _dialogManager.DisplayNextSentence();
+                return;
+            }
+
             UseItemAction?.Invoke();
+        }
 
         if (_playerInput.actions["Previous"].triggered)
             SelectPreviousItem?.Invoke();
@@ -100,7 +111,7 @@ public class Player : MonoBehaviour
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null)
         {
-            _floatingText.text = "Hold [E] to craft \n" + collectableItem.item.itemName;
+            _floatingText.text = "Hold [E] to collect \n" + collectableItem.item.itemName;
             _floatingTextAnimator.SetBool("IsVisible", true);
             _itemThatCanBeCollected = collectableItem;
         }
