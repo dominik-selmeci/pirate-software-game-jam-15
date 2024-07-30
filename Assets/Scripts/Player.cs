@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -22,6 +23,12 @@ public class Player : MonoBehaviour
     [SerializeField] TextMeshProUGUI _floatingText;
     [SerializeField] Animator _floatingTextAnimator;
     [SerializeField] HealthBar _healthBar;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip _drinkPotionSFX;
+    [SerializeField] AudioClip _placeItemSFX;
+    [SerializeField] AudioClip _collectMaterialSFX;
+
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -69,7 +76,7 @@ public class Player : MonoBehaviour
             SelectNextItem?.Invoke();
 
         if (_playerInput.actions["Interact"].WasPressedThisFrame() && _itemThatCanBeCollected != null)
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_collectMaterialSFX);
 
         if (_playerInput.actions["Interact"].triggered)
             CollectMaterial();
@@ -141,25 +148,29 @@ public class Player : MonoBehaviour
         bool isConsumable = itemInSlot.item.type == ItemType.Consumable;
         if (isDroppable)
         {
+            _audioSource.PlayOneShot(_placeItemSFX);
             Vector2 dropPosition = new Vector2(_rigidBody.position.x, _rigidBody.position.y - 1);
             Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
             PlayDropAnimation();
-		}else if (isConsumable)
+        }
+        else if (isConsumable)
         {
             Debug.Log(itemInSlot.item.actionType);
+            _audioSource.PlayOneShot(_drinkPotionSFX);
             if (itemInSlot.item.actionType.ToString() == "Cure")
-			{
+            {
                 Heal();
-            }else if(itemInSlot.item.actionType.ToString() == "Protect")
-			{
+            }
+            else if (itemInSlot.item.actionType.ToString() == "Protect")
+            {
                 StartCoroutine(ActiveShield());
-			}
+            }
         }
 
     }
 
     IEnumerator ActiveShield()
-	{
+    {
         shield.SetActive(true);
         _shieldActive = true;
         yield return new WaitForSeconds(15);
@@ -193,8 +204,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int _damage)
     {
-		if (!_shieldActive)
-		{
+        if (!_shieldActive)
+        {
             if (_currentHealth <= 0)
             {
                 Die();
@@ -214,7 +225,7 @@ public class Player : MonoBehaviour
     }
 
     private void Die()
-	{
+    {
         Instantiate(_enemy.gameObject, transform.position, Quaternion.identity);
         Destroy(gameObject.GetComponent<SpriteRenderer>());
         Destroy(this);

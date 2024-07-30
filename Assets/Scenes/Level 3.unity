@@ -539,7 +539,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b1043ed44504ffc4a87191a568e8a7da, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b1043ed44504ffc4a87191a568e8a7da, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -32927,10 +32927,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 508427792599554647, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 759992167425248817, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1079.8298
@@ -32987,31 +32983,6 @@ PrefabInstance:
       propertyPath: _dialogButtonText
       value: 
       objectReference: {fileID: 7892948035047306165}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: startLevelDialog._sentences.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[0]'
-      value: Is that a...? LOST SOUL...?
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[1]'
-      value: There is no way to fight against that...
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[2]'
-      value: Unless.... I light all the OMINOUS SPOTS!
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[3]'
-      value: (LOST SOULS are implacable enemies, if they spot you, they will follow
-        you and deal damage until you become one of them...
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082025840295855451, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startLevelDialog._sentences.Array.data[4]'
-      value: eliminate all OMINOUS SPOTS to send them back to the void).
-      objectReference: {fileID: 0}
     - target: {fileID: 5432705467679262411, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -33024,30 +32995,6 @@ PrefabInstance:
       propertyPath: combineButton
       value: 
       objectReference: {fileID: 762462966}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: recipes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'recipes.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bf02395d800cf04b8ab93cff1d61f35, type: 2}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'recipes.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 676986b44fc5bcf4e8c1e1ff154f8648, type: 2}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: startingItems.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startingItems.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
-    - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
-      propertyPath: 'startingItems.Array.data[3]'
-      value: 
-      objectReference: {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
     - target: {fileID: 7978642281970776547, guid: 9d155ee4493507d478bd7646d315a6c7, type: 3}
       propertyPath: 'inventorySlots.Array.data[0]'
       value: 
@@ -33385,11 +33332,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3513032953435020289, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3747360346150719206, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
@@ -33605,11 +33552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8325717312037082310, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8420974583521810052, guid: b4706369f653ee449af8dff825db1c04, type: 3}
       propertyPath: m_AnchorMax.y

@@ -66,10 +66,11 @@ MonoBehaviour:
   startingItems:
   - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
   - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
-  - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
-  - {fileID: 11400000, guid: dcc380b2c644be74ba3a5075ce1509e3, type: 2}
+  - {fileID: 11400000, guid: 89aa6621c9400874eaafd9b4d3d77ab3, type: 2}
   recipes:
   - {fileID: 11400000, guid: 6189bca3f6e1ed74bb6faaa4935ad554, type: 2}
+  - {fileID: 11400000, guid: 2bf02395d800cf04b8ab93cff1d61f35, type: 2}
+  - {fileID: 11400000, guid: 676986b44fc5bcf4e8c1e1ff154f8648, type: 2}
   dialog:
     _sentences:
     - You can't combine those together!
@@ -231,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 0}
+  isRoomCleansed: 0
 --- !u!1001 &3565433831755564853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,7 +287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8645799397072011886, guid: 2676afb490e57b84fb16056157baf311, type: 3}
       propertyPath: startLevelDialog._sentences.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8645799397072011886, guid: 2676afb490e57b84fb16056157baf311, type: 3}
       propertyPath: 'startLevelDialog._sentences.Array.data[0]'

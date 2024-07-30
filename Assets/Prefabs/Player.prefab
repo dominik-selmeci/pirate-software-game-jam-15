@@ -175,6 +175,9 @@ MonoBehaviour:
   _floatingText: {fileID: 8169454882176092255}
   _floatingTextAnimator: {fileID: 2908503561184832487}
   _healthBar: {fileID: 0}
+  _drinkPotionSFX: {fileID: 8300000, guid: 697302019cfcdb74a81f28ca689a19fd, type: 3}
+  _placeItemSFX: {fileID: 8300000, guid: 968a8e4b5f7c70b448e801e8fa48471e, type: 3}
+  _collectMaterialSFX: {fileID: 8300000, guid: a35e9bc30e8ef884f9951e808d460621, type: 3}
   _itemThatCanBeCollected: {fileID: 0}
   _canMove: 1
   _shieldActive: 0
