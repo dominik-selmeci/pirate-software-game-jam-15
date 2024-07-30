@@ -6,17 +6,31 @@ public class PauseMenu : MonoBehaviour
 
     public static bool GameIsPaused = false;
 	public GameObject pauseMenuUI;
+	DamagePanel damagePanel;
 
-    // Update is called once per frame
-    void Update()
+	private void Start()
+	{
+		damagePanel = GetComponentInParent<DamagePanel>();
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) //TODO: change this
 		{
 			if (GameIsPaused)
 			{
-                ResumeGame();
+				if (damagePanel != null)
+				{
+					damagePanel.DisabelPanel();
+				}
+				ResumeGame();
 			}else
 			{
+				if (damagePanel != null)
+				{
+					damagePanel.DisabelPanel();
+				}
 				PauseGame();
 			}
 		}

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject _enemy;
     [SerializeField] GameObject _shield;
     [SerializeField] GameObject _damagePanel;
+    [SerializeField] DamagePostProcessing damagePostProcessing;
 
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
@@ -227,11 +228,9 @@ public class Player : MonoBehaviour
                 Die();
             }
 
-            if(_damagePanel != null)
+            if(damagePostProcessing != null)
 			{
-               
-                _damagePanel.SetActive(true);
-                damageAnimator.SetTrigger("Play");
+                damagePostProcessing.PlayDamageEffect();
                
 			}
             _currentHealth -= _damage;
