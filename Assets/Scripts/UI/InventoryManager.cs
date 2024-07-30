@@ -44,14 +44,14 @@ public class InventoryManager : MonoBehaviour
         if (player._itemThatCanBeCollected == null) return;
 
         if (player._itemThatCanBeCollected.item != null)
-		{
+        {
             Item item = player._itemThatCanBeCollected.item;
-            for(int i = 0; i < item.quantity; i++)
-			{
+            for (int i = 0; i < item.quantity; i++)
+            {
                 AddItem(player._itemThatCanBeCollected.item);
             }
-		}
-            
+        }
+
 
         List<Item> randomItems = player._itemThatCanBeCollected.randomItems;
         if (randomItems.Count > 0)
@@ -226,11 +226,10 @@ public class InventoryManager : MonoBehaviour
         SetInventoryMode();
 
         // drop or consume
-        if (mode == InventoryMode.Crafting) return;
         player.UseItem(itemInSlot);
 
         if (!isMaterial)
-		{
+        {
             lowerCountInSlot(itemInSlot);
         }
     }
@@ -260,10 +259,10 @@ public class InventoryManager : MonoBehaviour
     }
 
     IEnumerator CloseDialog()
-	{
+    {
         yield return new WaitForSeconds(1);
         dialogTrigger.TriggerEndDialog();
-	}
+    }
 }
 
 public enum InventoryMode
