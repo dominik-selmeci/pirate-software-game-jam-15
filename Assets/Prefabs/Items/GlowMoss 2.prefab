@@ -321,7 +321,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
-  randomItems: []
+  randomItems:
+  - {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
+  - {fileID: 11400000, guid: cb1cc96d879b79c4f8763475dc3c7e34, type: 2}
+  - {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
+  - {fileID: 11400000, guid: 6796273d265f15644bf66b998ee84394, type: 2}
 --- !u!50 &1509616632924843274
 Rigidbody2D:
   serializedVersion: 5

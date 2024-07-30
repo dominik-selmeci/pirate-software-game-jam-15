@@ -26,10 +26,7 @@ public class ProgressManager : MonoBehaviour
             progressBar.SetProgress(_progress);
         }
 
-        Debug.Log("Total Spots " + totalSpots);
-        Debug.Log("New Progress " + newProgress);
-
-        if (newProgress == 1)
+        if (newProgress == totalSpots)
         {
             foreach (Enemy enemy in enemies)
             {

@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float speed = 1.5f;
 	[SerializeField] private float viewRadius;
-	[SerializeField] Transform[] moveSpots;
+	[SerializeField] public Transform[] moveSpots;
 	[SerializeField] LayerMask layerMask;
 	[SerializeField] Player player;
 	private int randomSpot;
@@ -24,6 +24,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         localScale = transform.localScale;
+		if(moveSpots == null)
+		{
+			moveSpots = new Transform[0];
+		}
 		randomSpot = Random.Range(0, moveSpots.Length);
 		waitTime = startWaitTime;
 		lastPos = transform.position;
@@ -39,7 +43,10 @@ public class Enemy : MonoBehaviour
 			Patrol();
 		}else
 		{
-			transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+			if(player != null)
+			{
+				transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+			}
 		}
 	}
 
@@ -75,18 +82,21 @@ public class Enemy : MonoBehaviour
 
 	private void Patrol()
 	{
-		transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
-
-		if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
+		if(moveSpots != null && moveSpots.Length > 0)
 		{
-			if (waitTime <= 0)
+			transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
+
+			if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
 			{
-				randomSpot = Random.Range(0, moveSpots.Length);
-				waitTime = startWaitTime;
-			}
-			else
-			{
-				waitTime -= Time.deltaTime;
+				if (waitTime <= 0)
+				{
+					randomSpot = Random.Range(0, moveSpots.Length);
+					waitTime = startWaitTime;
+				}
+				else
+				{
+					waitTime -= Time.deltaTime;
+				}
 			}
 		}
 	}

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("GameObjects")]
     [SerializeField] GameObject _torch;
+    [SerializeField] GameObject _enemy;
 
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
@@ -34,7 +35,6 @@ public class Player : MonoBehaviour
 
     public bool _canMove = true;
    
-
     void Start()
     {
         _speed = _baseSpeed;
@@ -101,11 +101,14 @@ public class Player : MonoBehaviour
         if (collider.CompareTag("HealthZone"))
             InvokeRepeating(nameof(Heal), 0, 0.33f);
 
+        if (collider.CompareTag("Enemy"))
+            TakeDamage(3);
+
     }
 
     void ReceiveDamage()
     {
-        TakeDamage(3);
+        TakeDamage(2);
     }
 
     void Heal()
@@ -176,10 +179,12 @@ public class Player : MonoBehaviour
         _canMove = true;
     }
 
-    private void TakeDamage(int _damage)
+    public void TakeDamage(int _damage)
     {
-        if (_currentHealth <= 0) return;
-        // TODO: player should die and the level should restart
+        if (_currentHealth <= 0)
+        {
+            Die();
+        }
 
         _currentHealth -= _damage;
         _healthBar.SetHealth(_currentHealth);
@@ -191,5 +196,12 @@ public class Player : MonoBehaviour
 
         _currentHealth += _health;
         _healthBar.SetHealth(_currentHealth);
+    }
+
+    private void Die()
+	{
+        Instantiate(_enemy.gameObject, transform.position, Quaternion.identity);
+        Destroy(gameObject.GetComponent<SpriteRenderer>());
+        Destroy(this);
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - DamageZone
   - HealthZone
   - Walls
+  - PatrolSpot
+  - Enemy
   layers:
   - Default
   - TransparentFX

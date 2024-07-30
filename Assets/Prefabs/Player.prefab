@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _torch: {fileID: 3575707644374670998, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
+  _enemy: {fileID: 851017593299682498, guid: 9cb215e29170694489fe521e7eb46c9a, type: 3}
   _baseSpeed: 3
   _maxHealth: 100
   _floatingText: {fileID: 8169454882176092255}
