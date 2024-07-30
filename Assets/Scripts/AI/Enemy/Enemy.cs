@@ -76,6 +76,9 @@ public class Enemy : MonoBehaviour
 			{
 				isChasing = true;
 			}
+		}else
+		{
+			isChasing = false;
 		}
 	}
 
