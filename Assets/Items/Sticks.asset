@@ -20,4 +20,4 @@ MonoBehaviour:
   range: {x: 5, y: 4}
   quantity: 2
   stackable: 1
-  image: {fileID: -170976432, guid: f9d0301e4a1a61146bfc90025b618285, type: 3}
+  image: {fileID: 1734274588, guid: 94a3a6458a9292d4fa7e060f447c2533, type: 3}
