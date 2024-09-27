@@ -20,21 +20,4 @@ public class DialogTrigger : MonoBehaviour
 			Destroy(gameObject);
 		}
 	}
-
-
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision != null && collision.CompareTag("Player"))
-		{
-			TriggerDialogue();
-		}
-	}
-
-	private void OnTriggerExit2D(Collider2D collision)
-	{
-		if (collision != null && collision.CompareTag("Player"))
-		{
-			TriggerEndDialog();
-		}
-	}
 }

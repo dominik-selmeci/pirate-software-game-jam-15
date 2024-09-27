@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
@@ -16,7 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("Properties")]
     [SerializeField] float _baseSpeed = 3f;
-    [SerializeField] int _maxHealth = 100;
+    [SerializeField] int _maxHealth = 120;
     int _currentHealth;
     float _speed = 3f;
 
@@ -36,6 +34,7 @@ public class Player : MonoBehaviour
     public event Action CollectMaterialAction;
 
     [HideInInspector] public CollectableItem _itemThatCanBeCollected;
+    [HideInInspector] public DialogTrigger _dialogTrigger;
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
@@ -68,14 +67,8 @@ public class Player : MonoBehaviour
             HandleWalkingAnimation(desiredVelocity);
         }
 
-        if (_playerInput.actions["UseItem"].triggered)
-        {
-            if (_dialogManager.isOpen)
+        if (_playerInput.actions["UseItem"].triggered && !_dialogManager.isOpen)
             {
-                _dialogManager.DisplayNextSentence();
-                return;
-            }
-
             UseItemAction?.Invoke();
         }
 
@@ -88,7 +81,15 @@ public class Player : MonoBehaviour
         if (_playerInput.actions["Interact"].WasPressedThisFrame() && _itemThatCanBeCollected != null)
             _audioSource.PlayOneShot(_collectMaterialSFX);
 
-        if (_playerInput.actions["Interact"].triggered)
+        if (_playerInput.actions["Interact"].WasPressedThisFrame() && _dialogManager.isOpen)
+        {
+            _dialogManager.DisplayNextSentence(); return;
+        }
+
+        if (_playerInput.actions["Interact"].WasPressedThisFrame() && !_dialogManager.isOpen && _dialogTrigger != null)
+            _dialogTrigger.TriggerDialogue();
+
+        if (_playerInput.actions["Interact"].triggered && !_dialogManager.isOpen)
             CollectMaterial();
 
         if (_playerInput.actions["Sprint"].IsPressed())
@@ -110,9 +111,17 @@ public class Player : MonoBehaviour
         CollectableItem collectableItem = collider.GetComponent<CollectableItem>();
         if (collectableItem != null)
         {
-            _floatingText.text = "Hold [E] to collect \n" + collectableItem.item.itemName;
+            _floatingText.text = "Hold [Space] to collect \n" + collectableItem.item.itemName;
             _floatingTextAnimator.SetBool("IsVisible", true);
             _itemThatCanBeCollected = collectableItem;
+        }
+
+        DialogTrigger dialogTrigger = collider.GetComponent<DialogTrigger>();
+        if (dialogTrigger != null)
+        {
+            _floatingText.text = "Press [Space] to read";
+            _floatingTextAnimator.SetBool("IsVisible", true);
+            _dialogTrigger = dialogTrigger;
         }
 
         if (collider.CompareTag("DamageZone"))
@@ -143,6 +152,13 @@ public class Player : MonoBehaviour
         {
             _floatingTextAnimator.SetBool("IsVisible", false);
             _itemThatCanBeCollected = null;
+        }
+
+        DialogTrigger dialogTrigger = collider.GetComponent<DialogTrigger>();
+        if (dialogTrigger != null)
+        {
+            _floatingTextAnimator.SetBool("IsVisible", false);
+            _dialogTrigger = null;
         }
 
         if (collider.CompareTag("DamageZone"))
@@ -221,7 +237,7 @@ public class Player : MonoBehaviour
                 Die();
             }
 
-            if(damagePostProcessing != null)
+            if (damagePostProcessing != null)
 			{
                 damagePostProcessing.PlayDamageEffect();
                
