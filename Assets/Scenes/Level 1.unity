@@ -3615,7 +3615,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.453434, y: 1.6559199, z: -10}
+  m_LocalPosition: {x: 4.4567785, y: 1.6559199, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4115,14 +4115,6 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 2088328763}
-    - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
-      propertyPath: _damagePanel
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774660138469056329, guid: 4f32e79085908884ca7009190f644e38, type: 3}
-      propertyPath: damageAnimator
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7852465780294792123, guid: 4f32e79085908884ca7009190f644e38, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5

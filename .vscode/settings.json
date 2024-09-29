@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Pirate Software Game Jam 15.sln"
+    "dotnet.defaultSolution": "pirate-software-game-jam-15.sln"
 }

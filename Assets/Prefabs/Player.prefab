@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7075417435123512637}
   - component: {fileID: 6528556688092602432}
   - component: {fileID: 3774660138469056329}
+  - component: {fileID: 9111496792939222855}
+  - component: {fileID: 6228777257605179458}
   - component: {fileID: 1687659060506113780}
   - component: {fileID: 697393334810152295}
   - component: {fileID: 7956504592399305374}
@@ -168,23 +170,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566414363d29f3d45a95354351ad94d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _torch: {fileID: 3575707644374670998, guid: 0ddcd19b0833af2418e73ae89edf6917, type: 3}
   _enemy: {fileID: 851017593299682498, guid: 9cb215e29170694489fe521e7eb46c9a, type: 3}
   _shield: {fileID: 6103220360329067942}
-  _damagePanel: {fileID: 0}
   damagePostProcessing: {fileID: 4998325209641827411}
   _baseSpeed: 3
   _maxHealth: 100
   _floatingText: {fileID: 8169454882176092255}
   _floatingTextAnimator: {fileID: 2908503561184832487}
   _healthBar: {fileID: 0}
+  _itemThatCanBeCollected: {fileID: 0}
+  _dialogTrigger: {fileID: 0}
+  _canMove: 1
+  _shieldActive: 0
+--- !u!114 &9111496792939222855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767016523448101795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a3608bf4ae65849bbdd1a4bbf98631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _baseSpeed: 3
+--- !u!114 &6228777257605179458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767016523448101795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 769dce4500956054cae30642eed4d748, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _drinkPotionSFX: {fileID: 8300000, guid: 697302019cfcdb74a81f28ca689a19fd, type: 3}
   _placeItemSFX: {fileID: 8300000, guid: 968a8e4b5f7c70b448e801e8fa48471e, type: 3}
   _collectMaterialSFX: {fileID: 8300000, guid: a35e9bc30e8ef884f9951e808d460621, type: 3}
-  damageAnimator: {fileID: 0}
-  _itemThatCanBeCollected: {fileID: 0}
-  _canMove: 1
-  _shieldActive: 0
 --- !u!60 &1687659060506113780
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -7,26 +7,18 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     [Header("GameObjects")]
-    [SerializeField] GameObject _torch;
     [SerializeField] GameObject _enemy;
     [SerializeField] GameObject _shield;
     [SerializeField] DamagePostProcessing damagePostProcessing;
 
     [Header("Properties")]
-    [SerializeField] float _baseSpeed = 3f;
     [SerializeField] int _maxHealth = 120;
     int _currentHealth;
-    float _speed = 3f;
 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI _floatingText;
     [SerializeField] Animator _floatingTextAnimator;
     [SerializeField] HealthBar _healthBar;
-
-    [Header("Audio")]
-    [SerializeField] AudioClip _drinkPotionSFX;
-    [SerializeField] AudioClip _placeItemSFX;
-    [SerializeField] AudioClip _collectMaterialSFX;
 
     public event Action UseItemAction;
     public event Action SelectPreviousItem;
@@ -38,20 +30,18 @@ public class Player : MonoBehaviour
 
     Rigidbody2D _rigidBody;
     PlayerInput _playerInput;
-    Animator _animator;
-    AudioSource _audioSource;
-
+    PlayerAudio _playerAudio;
+    PlayerMovement _playerMovement;
     public bool _canMove = true;
     public bool _shieldActive = false;
     DialogManager _dialogManager;
 
     void Start()
     {
-        _speed = _baseSpeed;
         _rigidBody = GetComponent<Rigidbody2D>();
         _playerInput = GetComponent<PlayerInput>();
-        _animator = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
+        _playerAudio = GetComponent<PlayerAudio>();
+        _playerMovement = GetComponent<PlayerMovement>();
         _currentHealth = _maxHealth;
         _healthBar.SetMaxHealth(_maxHealth);
         _dialogManager = FindFirstObjectByType<DialogManager>();
@@ -60,15 +50,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 desiredVelocity = _playerInput.actions["Move"].ReadValue<Vector2>() * _speed;
         if (_canMove)
         {
-            _rigidBody.linearVelocity = desiredVelocity;
-            HandleWalkingAnimation(desiredVelocity);
+            bool isRunning = _playerInput.actions["Sprint"].IsPressed();
+            _rigidBody.linearVelocity = _playerMovement.GetDesiredVelocity(isRunning);
         }
 
         if (_playerInput.actions["UseItem"].triggered && !_dialogManager.isOpen)
-            {
+        {
             UseItemAction?.Invoke();
         }
 
@@ -78,23 +67,25 @@ public class Player : MonoBehaviour
         if (_playerInput.actions["Next"].triggered)
             SelectNextItem?.Invoke();
 
-        if (_playerInput.actions["Interact"].WasPressedThisFrame() && _itemThatCanBeCollected != null)
-            _audioSource.PlayOneShot(_collectMaterialSFX);
-
         if (_playerInput.actions["Interact"].WasPressedThisFrame() && _dialogManager.isOpen)
         {
-            _dialogManager.DisplayNextSentence(); return;
+            _dialogManager.DisplayNextSentence();
+            return;
         }
 
         if (_playerInput.actions["Interact"].WasPressedThisFrame() && !_dialogManager.isOpen && _dialogTrigger != null)
             _dialogTrigger.TriggerDialogue();
 
         if (_playerInput.actions["Interact"].triggered && !_dialogManager.isOpen)
+        {
             CollectMaterial();
+            _playerAudio.PlayCollectSound();
+        }
+    }
 
-        if (_playerInput.actions["Sprint"].IsPressed())
-            _speed = 2 * _baseSpeed;
-        else _speed = _baseSpeed;
+    public void RestoreMovement()
+    {
+        _canMove = true;
     }
 
     void CollectMaterial()
@@ -174,15 +165,17 @@ public class Player : MonoBehaviour
         bool isConsumable = itemInSlot.item.type == ItemType.Consumable;
         if (isDroppable)
         {
-            _audioSource.PlayOneShot(_placeItemSFX);
+            _playerAudio.PlayPlaceItemSound();
             Vector2 dropPosition = new Vector2(_rigidBody.position.x, _rigidBody.position.y - 1);
             Instantiate(itemInSlot.item.gameObject, dropPosition, Quaternion.identity);
-            PlayDropAnimation();
+            _canMove = false;
+            _playerMovement.PlayDropAnimation(_rigidBody.linearVelocity.x);
+            _rigidBody.linearVelocity = Vector2.zero;
         }
         else if (isConsumable)
         {
             Debug.Log(itemInSlot.item.actionType);
-            _audioSource.PlayOneShot(_drinkPotionSFX);
+            _playerAudio.PlayDrinkSound();
             if (itemInSlot.item.actionType.ToString() == "Cure")
             {
                 Heal();
@@ -204,30 +197,6 @@ public class Player : MonoBehaviour
         _shield.SetActive(false);
     }
 
-    void PlayDropAnimation()
-    {
-        _canMove = false;
-        float linearVelocityX = _rigidBody.linearVelocity.x;
-        _rigidBody.linearVelocity = Vector2.zero;
-
-        if (linearVelocityX >= 0)
-            _animator.SetTrigger("DropItem");
-        else
-            _animator.SetTrigger("DropItemFlipped");
-    }
-
-    void HandleWalkingAnimation(Vector2 desiredVelocity)
-    {
-        _animator.SetFloat("horizontal", desiredVelocity.x);
-        _animator.SetFloat("vertical", desiredVelocity.y);
-        _animator.SetFloat("speed", desiredVelocity.sqrMagnitude);
-    }
-
-    public void RestoreMovement()
-    {
-        _canMove = true;
-    }
-
     public void TakeDamage(int _damage)
     {
         if (!_shieldActive)
@@ -238,10 +207,10 @@ public class Player : MonoBehaviour
             }
 
             if (damagePostProcessing != null)
-			{
+            {
                 damagePostProcessing.PlayDamageEffect();
-               
-			}
+
+            }
             _currentHealth -= _damage;
             _healthBar.SetHealth(_currentHealth);
         }
